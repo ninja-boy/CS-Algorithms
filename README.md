@@ -1,2 +1,2 @@
-# PytorchAlgorithms
-Repository for studying ML/DL algorithms using CS
+# Compressed Sensing Algorithms
+Repository for studying Compressed Sensing algorithms using PyTorch and MATLAB implementations.
