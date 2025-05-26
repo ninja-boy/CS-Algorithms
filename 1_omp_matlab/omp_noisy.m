@@ -26,8 +26,8 @@ end
 
 % Problem dimensions
 n = 256;      % signal length
-m = 100;      % number of measurements
-k = 10;       % sparsity level
+m = 50;      % number of measurements
+k = 5;       % sparsity level
 
 % Generate a random sparse signal
 x_true = zeros(n, 1);
