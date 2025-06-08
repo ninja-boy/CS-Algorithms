@@ -46,9 +46,6 @@ def monte_carlo_trial(sampling_rate, k, n=128, m=80):
 
 # ---- Monte Carlo Simulation and Plotting ----
 num_trials = 50
-n_values = [64, 128, 256]
-m_values = np.arange(2, 65, 2)  # Number of measurements
-noise_val = np.arange(0, 51, 5)  # Noise levels in dB
 k_values = np.arange(1, 11, 1)  # Sparsity levels
 sampling_rate = 100
 
