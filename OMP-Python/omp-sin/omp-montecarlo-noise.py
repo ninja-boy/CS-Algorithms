@@ -52,21 +52,8 @@ def add_noise(y, snr_db):
 
 # ---- Monte Carlo Simulation and Plotting ----
 num_trials = 50
-n_values = [64, 128, 256]
-m_values = np.arange(2, 65, 2)  # Number of measurements
 noise_val = np.arange(0, 51, 5)  # Noise levels in dB
 sampling_rate = 100
-'''
-print("Menu:-")
-print("Error Analysis for different values of:-")
-print("1. Number of Measurements (m)")
-print("2. Noise levels (sigma)")
-print("3. Sparsity levels (k)")
-choice=input("Enter your choice (1-3): ")
-if choice not in ['1', '2', '3']:
-    print("Invalid choice. Exiting.")
-    exit()
-'''
 
 plt.figure(figsize=(10, 6))
 avg_errors = []
