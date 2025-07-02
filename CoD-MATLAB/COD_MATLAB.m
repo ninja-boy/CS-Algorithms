@@ -1,7 +1,7 @@
 clc; clear; close all;
 
 n = 128;          
-m = 32;           
+m = 60;           
 K = 5;            
 alpha = 0.05;      
 i = 50;      
@@ -21,8 +21,8 @@ noise = sqrt(n_p) * randn(m, 1);
 
 Phi = randn(m,n);
 Phi = Phi ./ vecnorm(Phi')'; 
-%y = Phi * x;  
-y = Phi * x + noise;
+y = Phi * x;  
+%y = Phi * x + noise;
 
 theta = Phi * Psi;            
 
