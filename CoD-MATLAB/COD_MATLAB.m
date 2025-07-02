@@ -31,6 +31,8 @@ z = zeros(n,1);
 B = theta' * y;
 S = eye(n) - theta' * theta;
 
+mse_history = zeros(i,1); % Preallocate MSE array
+
 for t = 1:i
     z_bar = sign(B) .* max(abs(B) - alpha, 0); 
     [~, k] = max(abs(z - z_bar));              
@@ -38,9 +40,12 @@ for t = 1:i
     delta = z_bar(k) - z(k);
     B = B + S(:,k) * delta;
     z(k) = z_bar(k);
+
+    x_rec_iter = Psi * z; % Reconstruct at this iteration
+    mse_history(t) = mean((x - x_rec_iter).^2); % Compute MSE
 end
 
-x_rec = Psi * z;    % recovered ignal
+x_rec = Psi * z;    % recovered signal
 
 figure;
 plot(x, 'r--'); hold on;
@@ -50,5 +55,12 @@ title('Original vs Reconstructed Signal');
 xlabel('Index');
 ylabel('Amplitude');
 grid on;
+
+% Plot MSE vs Iterations
+figure;
+plot(1:i, mse_history, 'LineWidth', 2);
+xlabel('Iteration');
+ylabel('MSE');
+title('MSE vs Iterations for CoD');
 
 
