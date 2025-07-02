@@ -1,7 +1,7 @@
 clc; clear; close all;
 
-n = 256;          
-m = 64;           
+n = 128;          
+m = 32;           
 K = 5;            
 alpha = 0.05;      
 i = 50;      
@@ -10,7 +10,7 @@ z_true = zeros(n,1);
 idx = randperm(n, K);
 z_true(idx) = randn(K,1);
 
-Psi = dct(eye(n));         
+Psi = idct(eye(n));         
 x = Psi * z_true;   % real signal
 
 % Gaussian noise
@@ -43,8 +43,8 @@ end
 x_rec = Psi * z;    % recovered ignal
 
 figure;
-plot(x, 'b-'); hold on;
-plot(x_rec, 'r--');
+plot(x, 'r--'); hold on;
+plot(x_rec, 'b-');
 legend('Original Signal', 'Reconstructed Signal');
 title('Original vs Reconstructed Signal');
 xlabel('Index');
