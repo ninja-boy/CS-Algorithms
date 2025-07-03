@@ -410,9 +410,23 @@ The Iterations vs MSE graph for m = 64:
 
 \newpage
 
-\mainsection{CHAPTER 4: RADAR APPLICATIONS} <!-- Title to be decided -->
+\mainsection{CHAPTER 4: REAL TIME PROCESSING OF RADAR SIGNALS} <!-- Title to be decided -->
 
+The algorithms discussed above, such as OMP, ISTA, and CoD, generally have computational complexities that scale quadratically or cubically with the problem size. For example, OMP has a worst-case time complexity of cubic terms per signal. ISTA and CoD, while sometimes more efficient per iteration, may require a large number of iterations to converge, leading to overall quadratic or higher complexity.
 
+So, hence, while these algorithms are effective for offline or simulated environments, they are often not sufficient for real-time radar signal processing due to several reasons:
+
+- **Computational Complexity:** Algorithms like OMP, ISTA, and CoD can be computationally intensive, especially for large-scale problems or high-dimensional signals. Real-time radar applications require fast processing to meet strict latency requirements, which may not be achievable with these iterative algorithms on standard hardware.
+
+- **Latency Constraints:** Real-time systems demand immediate or near-instantaneous responses. The iterative nature of these algorithms can introduce unacceptable delays, making them unsuitable for time-critical radar applications.
+
+- **Resource Limitations:** Embedded radar systems often have limited memory and processing power. The memory and computational requirements of these algorithms may exceed the capabilities of such systems.
+
+- **Robustness to Dynamic Environments:** Real-time radar must handle rapidly changing environments, interference, and noise. The algorithms discussed may not adapt quickly enough to such variations or may require parameter tuning that is impractical in real time.
+
+- **Scalability:** As the number of targets or the dimensionality of the data increases, the performance of these algorithms can degrade, further limiting their applicability in real-time scenarios.
+
+To address these challenges, real-time radar signal processing often relies on hardware acceleration (e.g., FPGAs, GPUs), simplified or approximate algorithms, and parallel processing techniques to achieve the necessary speed and robustness.
 
 \newpage
 
