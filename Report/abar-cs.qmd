@@ -388,6 +388,8 @@ Also, the plot between the Mean Squared Error(MSE) and the number of iterations 
 
 ![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/ideal/cod_conv_ideal.png){fig-align="center" width=80%}
 
+it is observed that increase in resolution, ie. increasing the value of n increases the accuracy of the reconstructed signal. The accuracy is more than enough for n=32, which is only one fourth of the total samples. at n= 100, the signals is almost entirely reconstructed without any noticable errors.
+
 Now, for the noisy implementation m = 32 and 64 were considered for n = 128 and the corresponding graphs were plotted.
 For m = 32, the original vs reconstructed signal graph:
 
@@ -405,6 +407,9 @@ The Iterations vs MSE graph for m = 64:
 
 ![CoD Algorithm]((https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m64_noisy_mse.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy_mse -->
 
+for noisy implementation, n = 32 shows considerable error in amplitudes. Some of the smaller peaks are ignored by the algorithm. Its Iteration vs MSE graph is spiky but shows a clear trend of convergence.
+n = 64 shows even better performance. There are still some amplitude errors, but this is very good performance for only half the samples. The Iteration vs MSE graph is much more smooth.
+Overall, the algorithm is more than capable of reconstructing a noisy signal of low resolution with managable errors.
 
 \newpage
 
