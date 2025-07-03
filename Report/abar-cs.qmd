@@ -380,32 +380,32 @@ In the MATLAB implementation of CoD algorithm, The process begins by generating 
 Two types of implementations were considered- an ideal noiseless input signal and an input signal with 10dB of noise.
 For the ideal condition, multple values of m were considered(32,64 and 128) for n = 128 and the original vs reconstructed signal graphs were plotted.
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m32 -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/ideal/cod_m32.png){fig-align="center" width=80%}
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m64 -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/ideal/cod_m64.png){fig-align="center" width=80%}
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m128 -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/ideal/cod_m128.png){fig-align="center" width=80%}
 
 Also, the plot between the Mean Squared Error(MSE) and the number of iterations gives us the convergence of the algorithm.
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_conv_ideal -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/ideal/cod_conv_ideal.png){fig-align="center" width=80%}
 
 Now, for the noisy implementation m = 32 and 64 were considered for n = 128 and the corresponding graphs were plotted.
 For m = 32, the original vs reconstructed signal graph:
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m32_noisy1 -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m32_noisy1.png){fig-align="center" width=80%}
 
 The Iterations vs MSE graph for m = 32:
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m32_noisy_mse -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m32_noisy_mse.png){fig-align="center" width=80%}
 
 For m = 64, the original vs reconstructed signal graph:
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy1 -->
+![CoD Algorithm]((https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m64_noisy1.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy1 -->
 
 The Iterations vs MSE graph for m = 64:
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy_mse -->
+![CoD Algorithm]((https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m64_noisy_mse.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy_mse -->
 
 
 \newpage
