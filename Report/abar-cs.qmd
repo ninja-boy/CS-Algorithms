@@ -220,9 +220,9 @@ The various algorithms are used for reconstructing back the original signal that
 
 ## 3.1 ORTHOGONAL MATCHING PURSUIT (OMP)
 
-The OMP algorithm is an iterative greedy algorithm used to recover sparse signals from compressed measurements. At each iteration, it selects the column of the measurement matrix that is most correlated with the current residual and updates the solution accordingly. The process continues until a sufficiently small residual is met. The steps are listed below, as shown in [@omp-intro]
+The OMP algorithm is an iterative greedy algorithm used to recover sparse signals from compressed measurements. At each iteration, it selects the column of the measurement matrix that is most correlated with the current residual and updates the solution accordingly. The process continues until a sufficiently small residual is met. The steps are listed below, as shown below 
 
-![OMP Algorithm](C:\Users\NinjaBoyASUS\OneDrive\Dokumen\Abhi\Internship\OMP-Python\omp_algorithm.png){fig-align="center" width="80%"}
+![OMP Algorithm[@omp-intro]](C:\Users\NinjaBoyASUS\OneDrive\Dokumen\Abhi\Internship\OMP-Python\omp_algorithm.png){fig-align="center" width="80%"}
 
 This algorithm can be implemented in MATLAB and Python with necessary toolboxes and libraries.
 
@@ -304,9 +304,7 @@ The analysis above is for noiseless, fixed sparsity (k = 3) reconstruction.
 
 ![Monte Carlo Trial: Noise (in dB)](D:\Dokumen\Abhi\Internship\OMP-Python\omp-sin\omp-montecarlo-noise.png){fig-align="center" width=80%}
 
-
-
-Conclusion needed......
+In summary, OMP is a robust and efficient algorithm for compressed sensing when the signal is sparse and the measurement conditions are favorable. However, its sensitivity to noise and the need for sufficient measurements must be considered in practical applications.
 
 ## 3.2 ITERATIVE SHRINKAGE THRESHOLDING ALGORITHM (ISTA)
 
@@ -317,9 +315,9 @@ The ISTA is an iterative, convex optimisation method for solving sparse signal r
 3. Apply the soft-thresholding operator to enforce sparsity.
 4. Repeat until convergence.
 
-These steps are as shown, from [@fast-sparse-coding]
+These steps are as shown, from 
 
-![ISTA Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%}
+![ISTA Algorithm[@fast-sparse-coding]](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%}
 
 ### 3.2.1 Algorithm Implementation & Monte Carlo Trial
 
@@ -426,11 +424,17 @@ So, hence, while these algorithms are effective for offline or simulated environ
 
 - **Scalability:** As the number of targets or the dimensionality of the data increases, the performance of these algorithms can degrade, further limiting their applicability in real-time scenarios.
 
-To address these challenges, real-time radar signal processing often relies on hardware acceleration (e.g., FPGAs, GPUs), simplified or approximate algorithms, and parallel processing techniques to achieve the necessary speed and robustness.
+
+To address these challenges, we are introducing two modifications in this 
+\newpage
+
+\mainsection{CHAPTER 5: BLIND RECONSTRUCTION USING AUGMENTED DICTIONARY}
 
 \newpage
 
-\mainsection{CHAPTER 5: FUTURE SCOPE}
+\mainsection{CHAPTER 6: RECONSTRUCTION ALGORITHM UNROLLING}
+
+\mainsection{CHAPTER 7: FUTURE SCOPE}
 
 *Summary and conclusion go here...*
 \newpage
