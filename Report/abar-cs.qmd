@@ -11,30 +11,31 @@ format:
     title-font: Times New Roman
     highlight-style: monokai
     code-overflow: wrap
-    include-before-body: |
-      \begin{titlepage}
-      \centering
-      \vspace*{2cm}
-      % Uncomment and update the next line to add a logo
-      % \includegraphics[width=0.2\textwidth]{your-logo.png}\par
-      \vspace{1cm}
-      {\fontfamily{ptm}\Times New Roman
-      {\Huge\bfseries RADAR SIGNAL PROCESSING USING COMPRESSED SENSING \par}
-      \vspace{0.5cm}
-      {\Large Internship Report \par}
-      \vspace{2cm}
-      {\large\textbf{Authors:}\par}
-      {\large Abhinav M Balakrishnan \par}
-      {\large Arun Ramesh \par}
-      \vspace{2cm}
-      {\large\textbf{Institute:}\par}
-      {\large Cochin University of Science and Technology \par}
-      \vspace{2cm}
-      {\large\textbf{Date:} \today \par}
-      }
-      \vfill
-      \end{titlepage}
-      \clearpage
+    include-before-body:
+      text: |
+        \begin{titlepage}
+        \centering
+        \vspace*{2cm}
+        % Uncomment and update the next line to add a logo
+        % \includegraphics[width=0.2\textwidth]{your-logo.png}\par
+        \vspace{1cm}
+        {\fontfamily{ptm}\Times New Roman
+        {\Huge\bfseries RADAR SIGNAL PROCESSING USING COMPRESSED SENSING \par}
+        \vspace{0.5cm}
+        {\Large Internship Report \par}
+        \vspace{2cm}
+        {\large\textbf{Authors:}\par}
+        {\large Abhinav M Balakrishnan \par}
+        {\large Arun Ramesh \par}
+        \vspace{2cm}
+        {\large\textbf{Institute:}\par}
+        {\large Cochin University of Science and Technology \par}
+        \vspace{2cm}
+        {\large\textbf{Date:} \today \par}
+        }
+        \vfill
+        \end{titlepage}
+        \clearpage
 bibliography: references.bib
 cite-method: biblatex
 include-in-header:
@@ -504,7 +505,7 @@ add here..........
 
 add here..............
 
-## 6.5 Comparing Both Algorithms
+## 6.5 COMPARING BOTH ALGORITHMS
 
 add here..............
 
