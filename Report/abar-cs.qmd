@@ -87,7 +87,7 @@ ABSTRACT
 -->
 \mainsection{ABSTRACT}
 
-
+This project explores the application of compressed sensing techniques to radar signal processing, aiming to overcome the limitations imposed by traditional Nyquist sampling. It also presents the theoretical foundations of compressed sensing, details key reconstruction algorithms such as Orthogonal Matching Pursuit (OMP), Iterative Shrinkage Thresholding Algorithm (ISTA), and Coordinate Descent (CoD), and evaluates their performance through simulations and Monte Carlo trials. The results demonstrate the effectiveness and trade-offs of these algorithms in both noiseless and noisy environments, highlighting their potential for efficient and robust radar signal acquisition and processing. The project also explores the future possibilities and modifications for these algorithms for executing real time RADAR processing.
 
 \newpage
 
@@ -478,7 +478,7 @@ A gaussian noise is also added to check its robustness to noise.
 
 ## 5.3 OBSERVATIONS AND RESULTS
 
-The basis matrices are taken as 
+The basis matrices are taken as
 
 \newpage
 
