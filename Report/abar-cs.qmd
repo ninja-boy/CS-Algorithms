@@ -249,20 +249,11 @@ This algorithm can be implemented in MATLAB and Python with necessary toolboxes 
 
 - **MATLAB**
 
-Here, the sum of two sinusoids is taken as input and it is made sparse using the built-in dft matrix taken as the basis ($\Psi$) and is measured using a random gaussian matrix ($\Phi$). 
-
-The algorithm was initially tested directly in frequncy domain. In its ideal form(ie. without noise), for a low enough sparsity, the algorithm perfectly reconstructed the frequency and the amplitude values of compressed signal. Then, two values of noise was given(SNR=0dB and SNR=20dB). The Algorithm was able to reconstruct the signal near-perfectly for an SNR of 20 dB. For an SNR of 0 dB(signal power=noise power), the results were more inaccurate, both in terms of position on the graph(frequency) and the amplitude values. Still, the algorithm was able to reconstruct some parts of the signal with a fair amount of accuracy.
-
-![OMP Signal Reconstruction:Ideal (No noise added)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB/img/output/omp_ideal\Screenshot 2025-05-26183612.png){fig-align="center" width="80%"}
-
-![OMP Signal Reconstruction: 20dB](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB/img/output/omp/cod_m32_noisy1.png){fig-align="center" width="80%"}
-
-![OMP Signal Reconstruction: 0dB](C:\Users\NinjaBoyASUS\Downloads\omp-matlab-sin-fig.png){fig-align="center" width="80%"}
-
-Next, the code was used to implement sinusoids in time domain. A real sum of 5 sinusoids was given as input to the algorithm. Then the output is plotted along with the original signal to compare them. The algorithm was able to reconstruct the signal fairly accurately. Smaller peaks of the input signal was harder to reconstruct for the algorithm, and also, there was a reduction in the amplitude of the reconstructed signal w.r.t the original signal.A slight phase shift was observed in some outputs when the code is run for different random inputs.
-
-![OMP Signal Reconstruction: sinusoidal input](C:\Users\NinjaBoyASUS\Downloads\omp-matlab-sin-fig.png){fig-align="center" width="80%"}
-
+Here, The code is divided into two main parts: the OMP function definition and the signal generation/reconstruction workflow. 
+The omp function implements the OMP algorithm. It takes as input a measurement matrix A, a measurement vector b, and the sparsity level K. The function normalizes the columns of A and initializes the residual r as the measurement vector. It iteratively selects the column of A most correlated with the current residual, adds its index to the support set Lambda, and solves a least-squares problem to update the estimated sparse vector x. The residual is updated accordingly. This process repeats for K iterations, corresponding to the assumed sparsity of the original signal.
+For ideal omp implementation, n,m,k are defined and a random gaussian sensing matrix is created. then a sparse signal is created in frequency domain and is multiplied with the sensing matrix to create the measurements(output). Now, the omp algorithm is used to recover the frequency domain signal back and the rreconstructed and original signals are plotted together to check for errors.
+For noisy implementation, an additional gaussian noise is generated and added to the output measurement vector and this noisy output is given to the omp algorithm.
+Then a sum of random time domain sinusoidal input was given with $\Psi$ as a random gaussian matrix and $\phi$ as a inbuilt function for dft, dftmtx(). dft was taken instead of idft since the omp was calculated in the frequency domain. the ouput was then converted to time domain using ifft() and was plotted.
 
 - **Python**
   
@@ -283,6 +274,26 @@ Monte Carlo trials are a broad class of computational algorithms that rely on re
 The input values were stored in a list and these were fed to the trial algorithm. The error was calculated for a number of trials for the same input values, and only the average error is plotted to prevent unwanted variations in reconstruction. 
 
 ## 3.1.3 Observations & Results
+
+- **MATLAB**
+
+The algorithm was initially tested directly in frequncy domain. In its ideal form(ie. without noise), for a low enough sparsity, the algorithm perfectly reconstructed the frequency and the amplitude values of compressed signal. Then, two values of noise was given(SNR=0dB and SNR=20dB). The Algorithm was able to reconstruct the signal near-perfectly for an SNR of 20 dB. For an SNR of 0 dB(signal power=noise power), the results were more inaccurate, both in terms of position on the graph(frequency) and the amplitude values.The algorithm was able to reconstruct some parts of the signal with a fair amount of accuracy.
+
+![OMP Signal Reconstruction:Ideal (No noise added)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB\img\output\omp_ideal\omp_ideal_1.png){fig-align="center" width="80%"}
+
+![OMP Signal Reconstruction: 20dB](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB\img\output\omp_noisy\omp_noisy1.png){fig-align="center" width="80%"}
+
+![OMP Signal Reconstruction: 0dB](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB\img\output\omp_noisy\0db\omp_0db1.png){fig-align="center" width="80%"}
+
+Next, the code was used to implement sinusoids in time domain. A sum of 5 real sinusoids was given as input to the algorithm. Then the output is plotted along with the original signal to compare them. Initially, the algorithm gave an output which had its amplitude greatly decreased w.r.t the original signal.
+
+![OMP Signal Reconstruction: 0dB](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB\img\error\omp_sine\omp_err_1.png){fig-align="center" width="80%"}
+
+Further testing of the code showed the importance of normalising the theta matrix. The normalised theta matrix showed the correct output. After this was resolved, the algorithm was able to reconstruct the signal fairly accurately. Smaller peaks of the input signal was harder to reconstruct for the algorithm, and also, there was a reduction in the amplitude of the reconstructed signal w.r.t the original signal.A slight phase shift was observed in some outputs when the code is run for different random inputs.
+
+![OMP Signal Reconstruction: sinusoidal input](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB\img\output\omp_sine\omp_sine1.png){fig-align="center" width="80%"}
+
+- **Python**
 
 For **Stage 1** implementation, the sparse matrix is already created by specifying k. So, the compressed matrix (y) is generated by just multiplying sensing matrix ($\Theta$) and the generated sparse matrix (s). The results are plotted as shown below,
 
