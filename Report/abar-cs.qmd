@@ -430,14 +430,35 @@ So, hence, while these algorithms are effective for offline or simulated environ
 - **Scalability:** As the number of targets or the dimensionality of the data increases, the performance of these algorithms can degrade, further limiting their applicability in real-time scenarios.
 
 
-To address these challenges, we are introducing two modifications in this 
+To address these challenges, we are introducing two modifications in our model,
+
+1. **Augmented Dictionary for Blind Reconstruction**
+
+2. **Reconstruction Algorithm Unrolling** 
+
 \newpage
 
 \mainsection{CHAPTER 5: BLIND RECONSTRUCTION USING AUGMENTED DICTIONARY}
 
+## 5.1 INTRODUCTION
+
+In traditional compressed sensing, the measurement process assumes prior knowledge of the basis (or dictionary) in which the signal is sparse. However, in many real-world radar applications, the exact basis or the parameters of the signal (such as frequency, phase, or waveform) may not be known in advance. This scenario is referred to as **blind reconstruction**.
+
+Blind reconstruction aims to recover both the sparse signal and the underlying dictionary (or its parameters) from the compressed measurements. One effective approach to address this challenge is to use an **augmented dictionary**—a collection of candidate basis vectors that span a wider range of possible signal structures.
+
+By constructing an augmented dictionary that includes a dense grid of possible frequencies, phases, or other parameters, the reconstruction algorithm can search over this larger set to identify the best matching atoms for the observed measurements. This enables the recovery of signals whose exact structure is not known a priori, at the cost of increased computational complexity and potential coherence issues.
+
+In the following sections, we discuss the construction of augmented dictionaries, their application to radar signal processing, and the trade-offs involved in blind compressed sensing.
+
+## 5.2 IMPLEMENTATION
+
+The 
+
 \newpage
 
 \mainsection{CHAPTER 6: RECONSTRUCTION ALGORITHM UNROLLING}
+
+\newpage
 
 \mainsection{CHAPTER 7: FUTURE SCOPE}
 
@@ -536,7 +557,6 @@ function x = omp(A, b, K)
     originalA = A;               % Store the original A
     norms = vecnorm(A);
     A = A ./ norms;
-
     r = b;
     Lambda = [];
     N = size(A, 2);
