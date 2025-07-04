@@ -19,7 +19,7 @@ format:
         % Uncomment and update the next line to add a logo
         % \includegraphics[width=0.2\textwidth]{your-logo.png}\par
         \vspace{1cm}
-        {\fontfamily{ptm}\Times New Roman
+        {\fontfamily{ptm}\selectfont
         {\Huge\bfseries RADAR SIGNAL PROCESSING USING COMPRESSED SENSING \par}
         \vspace{0.5cm}
         {\Large Internship Report \par}
