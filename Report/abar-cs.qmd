@@ -1,10 +1,4 @@
 ---
-title: "RADAR SIGNAL PROCESSING USING COMPRESSED SENSING"
-subtitle: "Internship Report"
-author: 
-  - Abhinav M Balakrishnan
-  - Arun Ramesh
-institute: "Cochin University of Science and Technology"
 format: 
   pdf:
     mainfont: Times New Roman
@@ -16,7 +10,6 @@ format:
         \begin{titlepage}
         \centering
         \vspace*{2cm}
-        % Uncomment and update the next line to add a logo
         % \includegraphics[width=0.2\textwidth]{your-logo.png}\par
         \vspace{1cm}
         {\fontfamily{ptm}\selectfont
@@ -24,14 +17,13 @@ format:
         \vspace{0.5cm}
         {\Large Internship Report \par}
         \vspace{2cm}
-        {\large\textbf{Authors:}\par}
-        {\large Abhinav M Balakrishnan \par}
-        {\large Arun Ramesh \par}
+        {\large\bfseries AUTHORS\par}
+        {\large\itshape Abhinav M Balakrishnan\par}
+        {\large\itshape Arun Ramesh\par}
         \vspace{2cm}
-        {\large\textbf{Institute:}\par}
-        {\large Cochin University of Science and Technology \par}
+        {\large\bfseries INSTITUTE\par}
+        {\large\itshape School of Engineering, CUSAT\par}
         \vspace{2cm}
-        {\large\textbf{Date:} \today \par}
         }
         \vfill
         \end{titlepage}
