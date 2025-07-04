@@ -235,9 +235,9 @@ Here, the sum of two sinusoids is taken as input and it is made sparse using the
 
 The algorithm was initially tested directly in frequncy domain. In its ideal form(ie. without noise), for a low enough sparsity, the algorithm perfectly reconstructed the frequency and the amplitude values of compressed signal. Then, two values of noise was given(SNR=0dB and SNR=20dB). The Algorithm was able to reconstruct the signal near-perfectly for an SNR of 20 dB. For an SNR of 0 dB(signal power=noise power), the results were more inaccurate, both in terms of position on the graph(frequency) and the amplitude values. Still, the algorithm was able to reconstruct some parts of the signal with a fair amount of accuracy.
 
-![OMP Signal Reconstruction:Ideal (No noise added)](C:\Users\NinjaBoyASUS\Downloads\omp-matlab-sin-fig.png){fig-align="center" width="80%"}
+![OMP Signal Reconstruction:Ideal (No noise added)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB/img/output/omp_ideal\Screenshot 2025-05-26183612.png){fig-align="center" width="80%"}
 
-![OMP Signal Reconstruction: 20dB](C:\Users\NinjaBoyASUS\Downloads\omp-matlab-sin-fig.png){fig-align="center" width="80%"}
+![OMP Signal Reconstruction: 20dB](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMP_MATLAB/img/output/omp/cod_m32_noisy1.png){fig-align="center" width="80%"}
 
 ![OMP Signal Reconstruction: 0dB](C:\Users\NinjaBoyASUS\Downloads\omp-matlab-sin-fig.png){fig-align="center" width="80%"}
 

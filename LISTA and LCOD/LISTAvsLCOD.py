@@ -144,6 +144,9 @@ class LISTA_Model(nn.Module):
         if H is not None:
             self.A.weight.data = H.t()
             self.B.weight.data = H.t() @ H
+            
+        # A needs no_grad (should not be trained)
+        # B needs no_grad (should not be trained)
 
     def _shrink(self, s, beta):
         return beta * F.softshrink(s / beta, lambd=self.rho)
