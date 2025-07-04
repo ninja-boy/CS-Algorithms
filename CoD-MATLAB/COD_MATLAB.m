@@ -3,8 +3,8 @@ clc; clear; close all;
 n = 128;      % length of the signal    
 m = 32;       % change this to adjust the number of measurements    
 K = 5;        % number of sparse coefficients    
-alpha = 0.05;      
-i = 50;      
+alpha = 0.05; % threshold for sparsity    
+i = 50;       % number of iterations
 
 z_true = zeros(n,1);
 idx = randperm(n, K);
@@ -24,22 +24,22 @@ Phi = Phi ./ vecnorm(Phi')';
 %y = Phi * x;  
 y = Phi * x + noise;
 
-theta = Phi * Psi;            
+theta = Phi * Psi;  % Dictionary for CoD            
 
 % Coordinate Descent Algorithm
-z = zeros(n,1);
-B = theta' * y;
-S = eye(n) - theta' * theta;
+ z = zeros(n,1);
+B = theta' * y;  % Initial coefficients
+S = eye(n) - theta' * theta;  % Residual matrix
 
 mse_history = zeros(i,1); % Preallocate MSE array
 
 for t = 1:i
-    z_bar = sign(B) .* max(abs(B) - alpha, 0); 
-    [~, k] = max(abs(z - z_bar));              
+    z_bar = sign(B) .* max(abs(B) - alpha, 0); % Thresholding step
+    [~, k] = max(abs(z - z_bar));     % Find index of maximum change         
 
-    delta = z_bar(k) - z(k);
-    B = B + S(:,k) * delta;
-    z(k) = z_bar(k);
+    delta = z_bar(k) - z(k);  % Update step
+    B = B + S(:,k) * delta; % Update coefficients
+    z(k) = z_bar(k); % Update sparse coefficient
 
     x_rec_iter = Psi * z; % Reconstruct at this iteration
     mse_history(t) = mean((x - x_rec_iter).^2); % Compute MSE
