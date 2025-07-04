@@ -460,7 +460,12 @@ Algorithm unrolling involves representing each iteration of an algorithm—such 
 In this section, we discuss its advantages for real-time radar signal processing, and introduce two unrolled algorithms - **Learned ISTA(LISTA)** and **Learned CoD(LCoD)**. 
 
 ## 6.2 ADVANTAGES
+Algorithm unfolding is a technique that transforms iterative algorithms (like those used in optimization or signal processing) into a sequence of layers, similar to neural networks. This approach offers several advantages:
 
+**Interpretability**: Each layer corresponds to a step in the original algorithm, making the model’s operations easier to understand and analyze.
+**Efficiency**: By learning parameters for each layer, unfolded algorithms can converge faster and require fewer iterations than traditional methods.
+**Adaptability**: The unfolded structure can be trained end-to-end, allowing it to adapt to specific data distributions or tasks.
+**Performance**: Often achieves better accuracy and robustness compared to standard iterative algorithms, especially when combined with data-driven learning.
 
 \newpage
 
