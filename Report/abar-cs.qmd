@@ -451,6 +451,17 @@ The
 
 \mainsection{CHAPTER 6: RECONSTRUCTION ALGORITHM UNROLLING}
 
+## 6.1 INTRODUCTION
+
+As explained in the sections above, the current reconstruction algorithms are iterative, hence require a long computational period before an output is generated, which hampers the real time processing of signal. One way to avoid this is improving the Reconstruction algorithms to work real time.For such a case, machine learning techniques could help. One promising approach is **algorithm unrolling** (also known as unfolding), where the iterative steps of a reconstruction algorithm are mapped onto the layers of a neural network. This technique enables the integration of domain knowledge from classical algorithms with the learning capacity of neural networks, resulting in models that are both interpretable and highly effective.
+
+Algorithm unrolling involves representing each iteration of an algorithm—such as ISTA or OMP—as a layer in a neural network. The parameters of these layers (e.g., thresholds, step sizes, or transforms) can then be learned from data, allowing the network to adapt to the specific characteristics of the signals and measurement process. This approach not only accelerates convergence compared to traditional iterative methods but also improves reconstruction quality, especially in challenging scenarios with noise or model mismatch.
+
+In this section, we discuss its advantages for real-time radar signal processing, and introduce two unrolled algorithms - **Learned ISTA(LISTA)** and **Learned CoD(LCoD)**. 
+
+## 6.2 ADVANTAGES
+
+
 \newpage
 
 \mainsection{CHAPTER 7: FUTURE SCOPE}
