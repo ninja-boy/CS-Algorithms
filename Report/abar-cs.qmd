@@ -406,7 +406,7 @@ Overall, the algorithm is more than capable of reconstructing a noisy signal of 
 
 \newpage
 
-\mainsection{CHAPTER 4: REAL TIME PROCESSING OF RADAR SIGNALS} <!-- Title to be decided -->
+\mainsection{CHAPTER 4: REAL TIME PROCESSING OF RADAR SIGNALS} 
 
 The algorithms discussed above, such as OMP, ISTA, and CoD, generally have computational complexities that scale quadratically or cubically with the problem size. For example, OMP has a worst-case time complexity of cubic terms per signal. ISTA and CoD, while sometimes more efficient per iteration, may require a large number of iterations to converge, leading to overall quadratic or higher complexity.
 
@@ -437,13 +437,27 @@ To address these challenges, we are introducing two modifications in our model,
 
 In traditional compressed sensing, the measurement process assumes prior knowledge of the basis (or dictionary) in which the signal is sparse. However, in many real-world radar applications, the exact basis or the parameters of the signal (such as frequency, phase, or waveform) may not be known in advance. This scenario is referred to as **blind reconstruction**.
 
-Blind reconstruction aims to recover both the sparse signal and the underlying dictionary (or its parameters) from the compressed measurements. One effective approach to address this challenge is to use an **augmented dictionary**—a collection of candidate basis vectors that span a wider range of possible signal structures.
+Blind reconstruction aims to recover both the sparse signal and the underlying dictionary (or its parameters) from the compressed measurements. One effective approach to address this challenge is to use an **augmented dictionary**— a collection of candidate basis vectors that span a wider range of possible signal structures.
 
 So, the upcoming sections will discuss the implementation and the observations drawn from it.
 
 ## 5.2 IMPLEMENTATION
 
-In the previous implementations
+In the previous implementations, the input signal type is known and hence, the basis is also known and the compression is done with ease. But in real life, the the radar can receive any type of signals, and some of them might not be sparse enough for the signal to be taken for reconstruction.
+
+For now, only 3 types of signals are accepted as inputs, that is **Single tone Sinusoids**, **LFM(Linear Frequency Modulated)** and **BPSK (Binary Phase Shifted Key)** signals. So, the suitable basis is analysed and selected for making the augmented basis by concatenating each of the individual dictionaries.
+
+\begin{equation}
+\boxed{
+    \Psi_{\text{aug}} = \left[\, \Psi_{\text{sinusoid}} \;\Big|\; \Psi_{\text{LFM}} \;\Big|\; \Psi_{\text{BPSK}} \,\right]
+}
+\end{equation}
+
+where $\Psi_{\text{sinusoid}}$, $\Psi_{\text{LFM}}$, and $\Psi_{\text{BPSK}}$ are the basis matrices for Single-tone sinusoids, LFM signals, and BPSK signals, respectively, and $\Psi_{\text{aug}}$ is the augmented dictionary formed by concatenating these bases.
+
+## 5.3 OBSERVATIONS AND RESULTS
+
+
 
 \newpage
 
