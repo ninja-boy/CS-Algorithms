@@ -87,7 +87,7 @@ ABSTRACT
 -->
 \mainsection{ABSTRACT}
 
-
+This project explores the application of compressed sensing techniques to radar signal processing, aiming to overcome the limitations imposed by traditional Nyquist sampling. It also presents the theoretical foundations of compressed sensing, details key reconstruction algorithms such as Orthogonal Matching Pursuit (OMP), Iterative Shrinkage Thresholding Algorithm (ISTA), and Coordinate Descent (CoD), and evaluates their performance through simulations and Monte Carlo trials. The results demonstrate the effectiveness and trade-offs of these algorithms in both noiseless and noisy environments, highlighting their potential for efficient and robust radar signal acquisition and processing. The project also explores the future possibilities and modifications for these algorithms for executing real time RADAR processing.
 
 \newpage
 
@@ -110,15 +110,33 @@ ABSTRACT
 \tocline{\hspace*{2em}3.2 Iterative Shrinkage Thresholding Algorithm (ISTA) \dotfill 14}
 \tocline{\hspace*{4em}3.2.1 Algorithm Implementation \& Monte Carlo Trial \dotfill 15}
 \tocline{\hspace*{4em}3.2.2 Observations \& Results \dotfill 15}
-\tocline{\hspace*{2em}3.3 Coordinate Descent (CoD) \dotfill 19}
-\tocline{\hspace*{4em}3.3.1 Algorithm Implementation \dotfill 19}
-\tocline{\hspace*{4em}3.3.2 Observations \& Results \dotfill 19}
+\tocline{\hspace*{2em}3.3 Coordinate Descent (CoD) \dotfill 20}
+\tocline{\hspace*{4em}3.3.1 Algorithm Implementation \dotfill 20}
+\tocline{\hspace*{4em}3.3.2 Observations \& Results \dotfill 21}
 
-\tocline{\textbf{4. Conclusion} \dotfill 20}
+\tocline{\textbf{4. Real Time Processing of RADAR Signals} \dotfill 26}
 
-\tocline{\textbf{References} \dotfill 21}
+\tocline{\textbf{5. Blind Reconstruction Using Augmented Dictionary} \dotfill 27}
+\tocline{\hspace*{2em}5.1 Introduction \dotfill 27}
+\tocline{\hspace*{2em}5.2 Implementation \dotfill 27}
+\tocline{\hspace*{2em}5.3 Observations and Results \dotfill 28}
 
-\tocline{\textbf{Appendices} \dotfill 22}
+\tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 23}
+\tocline{\hspace*{2em}6.1 Introduction \dotfill 23}
+\tocline{\hspace*{2em}6.2 Advantages \dotfill 23}
+\tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 24}
+\tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 24}
+\tocline{\hspace*{4em}6.3.2 Observations \dotfill 24}
+\tocline{\hspace*{2em}6.4 Learned CoD (LCoD) \dotfill 25}
+\tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 25}
+\tocline{\hspace*{4em}6.4.2 Observations \dotfill 25}
+\tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 26}
+
+\tocline{\textbf{7. Future Scope} \dotfill 27}
+
+\tocline{\textbf{References} \dotfill 28}
+
+\tocline{\textbf{Appendices} \dotfill 29}
 
 \newpage
 \pagenumbering{arabic}
@@ -446,7 +464,7 @@ So, the upcoming sections will discuss the implementation and the observations d
 
 In the previous implementations, the input signal type is known and hence, the basis is also known and the compression is done with ease. But in real life, the the radar can receive any type of signals, and some of them might not be sparse enough for the signal to be taken for reconstruction.
 
-For now, only 3 types of signals are accepted as inputs, that is **Single tone Sinusoids**, **LFM(Linear Frequency Modulated)** and **BPSK (Binary Phase Shifted Key)** signals. So, the suitable basis is analysed and selected for making the augmented basis by concatenating each of the individual dictionaries.
+For now, only 3 types of signals are accepted as inputs, that is **Single tone Sinusoids**, **LFM(Linear Frequency Modulated)** and **BPSK (Binary Phase Shifted Key)** signals. The input signals are generated and is sent through a mixer. The suitable basis is analysed and selected for making the augmented basis by concatenating each of the individual dictionaries.
 
 \begin{equation}
 \boxed{
@@ -454,11 +472,13 @@ For now, only 3 types of signals are accepted as inputs, that is **Single tone S
 }
 \end{equation}
 
-where $\Psi_{\text{sinusoid}}$, $\Psi_{\text{LFM}}$, and $\Psi_{\text{BPSK}}$ are the basis matrices for Single-tone sinusoids, LFM signals, and BPSK signals, respectively, and $\Psi_{\text{aug}}$ is the augmented dictionary formed by concatenating these bases.
+where $\Psi_{\text{sinusoid}}$, $\Psi_{\text{LFM}}$, and $\Psi_{\text{BPSK}}$ are the basis matrices for Single-tone sinusoids, LFM signals, and BPSK signals, respectively, and $\Psi_{\text{aug}}$ is the augmented dictionary formed by concatenating these bases. 
+
+A gaussian noise is also added to check its robustness to noise.
 
 ## 5.3 OBSERVATIONS AND RESULTS
 
-
+The basis matrices are taken as
 
 \newpage
 
