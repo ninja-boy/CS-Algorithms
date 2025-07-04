@@ -407,7 +407,7 @@ The Iterations vs MSE graph for m = 64:
 
 ![CoD Algorithm]((https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/noisy/cod_m64_noisy_mse.png){fig-align="center" width=80%} <!-- filename = cod_m64_noisy_mse -->
 
-for noisy implementation, n = 32 shows considerable error in amplitudes. Some of the smaller peaks are ignored by the algorithm. Its Iteration vs MSE graph is spiky but shows a clear trend of convergence.
+for noisy implementation, n = 32 shows considerable error in amplitudes. Some of the smaller peaks are ignored by the algorithm. Its Iteration vs MSE graph is spiky but still 87\shows a clear trend of convergence.
 n = 64 shows even better performance. There are still some amplitude errors, but this is very good performance for only half the samples. The Iteration vs MSE graph is much more smooth.
 Overall, the algorithm is more than capable of reconstructing a noisy signal of low resolution with managable errors.
 
