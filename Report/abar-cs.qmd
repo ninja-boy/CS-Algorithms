@@ -74,8 +74,6 @@ For each main section, use the following format:
 
 This acknowledgment is a testament to the intensive drive and technical competence of many individuals who have contributed to the success of our project.
 
-First and foremost, we express our sincere gratitude to Mrs. Usha P. Verma, Associate Director of ASL, DRDO, for the opportunity to intern at this esteemed organization.
-
 Special thanks to Shri B.S. Teza, Scientist ‘E’, ASL DRDO, for not only selecting us for this internship, but also for his consistent guidance, encouragement, and valuable insights throughout the course of our project.
 
 We also thank our professors for their constant support and inspiration. Special thanks to our HoD, Dr. Deepa Shankar and our class co-ordinator and department faculty, Dr. Mridula S.
