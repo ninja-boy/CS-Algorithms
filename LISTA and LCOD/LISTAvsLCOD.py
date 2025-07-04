@@ -134,23 +134,23 @@ class LISTA_Model(nn.Module):
         self.n, self.m = n, m
         self.H = H
         self.T = T  # ISTA Iterations
-        self.rho = rho  # Lagrangian Multiplier
+        self.rho = rho 
         self.A = nn.Linear(n, m, bias=False)  # Weight Matrix
         self.B = nn.Linear(m, m, bias=False)  # Weight Matrix
         # ISTA Stepsizes eta
-        self.beta = nn.Parameter(torch.ones(T + 1, 1, 1), requires_grad=True)
+        self.beta = nn.Parameter(torch.ones(T + 1, 1, 1), requires_grad=True) #
         self.mu = nn.Parameter(torch.ones(T + 1, 1, 1), requires_grad=True)
         # Initialization
         if H is not None:
             self.A.weight.data = H.t()
             self.B.weight.data = H.t() @ H
 
-        # A and B need no_grad (should not be trained)
+        # A and B should not be trained
         for param in self.A.parameters():
             param.requires_grad = False
         for param in self.B.parameters():
             param.requires_grad = False
-        # B needs no_grad (should not be trained)
+        
 
     def _shrink(self, s, beta):
         return beta * F.softshrink(s / beta, lambd=self.rho)
