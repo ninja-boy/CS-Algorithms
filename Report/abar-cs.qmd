@@ -474,11 +474,13 @@ For now, only 3 types of signals are accepted as inputs, that is **Single tone S
 
 where $\Psi_{\text{sinusoid}}$, $\Psi_{\text{LFM}}$, and $\Psi_{\text{BPSK}}$ are the basis matrices for Single-tone sinusoids, LFM signals, and BPSK signals, respectively, and $\Psi_{\text{aug}}$ is the augmented dictionary formed by concatenating these bases. 
 
-A gaussian noise is also added to check its robustness to noise.
+A gaussian noise is also added to check its performance in noisy environments.
 
 ## 5.3 OBSERVATIONS AND RESULTS
 
-The basis matrices are taken as
+Initially the DCT matrix is used as the basis for the above mentioned input signals and their results are as shown,
+
+
 
 \newpage
 
