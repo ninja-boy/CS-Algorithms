@@ -1,10 +1,4 @@
 ---
-title: "RADAR SIGNAL PROCESSING USING COMPRESSED SENSING"
-subtitle: "Internship Report"
-author: 
-  - Abhinav M Balakrishnan
-  - Arun Ramesh
-institute: "Cochin University of Science and Technology"
 format: 
   pdf:
     mainfont: Times New Roman
@@ -16,7 +10,6 @@ format:
         \begin{titlepage}
         \centering
         \vspace*{2cm}
-        % Uncomment and update the next line to add a logo
         % \includegraphics[width=0.2\textwidth]{your-logo.png}\par
         \vspace{1cm}
         {\fontfamily{ptm}\selectfont
@@ -24,14 +17,13 @@ format:
         \vspace{0.5cm}
         {\Large Internship Report \par}
         \vspace{2cm}
-        {\large\textbf{Authors:}\par}
-        {\large Abhinav M Balakrishnan \par}
-        {\large Arun Ramesh \par}
+        {\large\bfseries AUTHORS\par}
+        {\large\itshape Abhinav M Balakrishnan\par}
+        {\large\itshape Arun Ramesh\par}
         \vspace{2cm}
-        {\large\textbf{Institute:}\par}
-        {\large Cochin University of Science and Technology \par}
+        {\large\bfseries INSTITUTE\par}
+        {\large\itshape School of Engineering, CUSAT\par}
         \vspace{2cm}
-        {\large\textbf{Date:} \today \par}
         }
         \vfill
         \end{titlepage}
@@ -192,13 +184,12 @@ Key motivations for using compressed sensing include:
 
 In the following chapters, we explore the principles of compressed sensing and its application to radar signal processing.
 
-
 ## 2.3 FUNDAMENTAL TERMS
 
 Before delving deeper into compressed sensing, it is important to understand some fundamental terms:
 
 - **Sparsity:** A signal is said to be sparse if most of its coefficients are zero or close to zero. Sparsity is a key assumption in compressed sensing.
-- **Basis:** In compressed sensing, a basis is a set of vectors (such as Fourier, wavelet, or DCT bases) in which the signal can be represented as a linear combination. A signal is considered sparse if it has only a few nonzero coefficients when expressed in this basis. The choice of basis is crucial, as it determines the sparsity and thus the effectiveness of compressed sensing for a given signal.
+- **Basis:** In compressed sensing, a basis is a set of vectors (such as Fourier, wavelet, or DCT bases) in which the signal can be represented as a linear combination. The choice of basis is crucial, as it determines the sparsity and thus the effectiveness of compressed sensing for a given signal. It is also called the **dictionary matrix**.
 - **Measurement Matrix:** In compressed sensing, the measurement matrix is used to acquire linear projections of the original signal. It is also known as the dictionary matrix or sampling matrix.
 - **Reconstruction Algorithm:** Algorithms such as Basis Pursuit, Orthogonal Matching Pursuit (OMP), and LASSO are used to recover the original sparse signal from the compressed measurements.
 
@@ -215,9 +206,7 @@ In compressed sensing, the measurement process can be mathematically modeled as:
 where:
 
 - $\mathbf{x} \in \mathbb{R}^n$ is the **original signal** (which is assumed to be sparse or compressible in some basis)
-
 - $\phi \in \mathbb{R}^{m \times n}$ is the **measurement matrix** (with $m < n$)
-
 - $\mathbf{y} \in \mathbb{R}^m$ is the **compressed (measurement) vector**.
 
 If the signal $\mathbf{x}$ is not sparse in its original domain but is sparse in some transform domain (e.g., DCT, DFT, or wavelet), we can write $\mathbf{x} = \Psi \mathbf{s}$, where $\Psi$ is the **basis matrix** and $\mathbf{s}$ is the **sparse coefficient vector**. The measurement model then becomes:
@@ -482,7 +471,7 @@ So, the upcoming sections will discuss the implementation and the observations d
 
 In the previous implementations, the input signal type is known and hence, the basis is also known and the compression is done with ease. But in real life, the the radar can receive any type of signals, and some of them might not be sparse enough for the signal to be taken for reconstruction.
 
-For now, only 3 types of signals are accepted as inputs, that is **Single tone Sinusoids**, **LFM(Linear Frequency Modulated)** and **BPSK (Binary Phase Shifted Key)** signals. The input signals are generated and is sent through a mixer. The suitable basis is analysed and selected for making the augmented basis by concatenating each of the individual dictionaries.
+For now, only 3 types of signals are accepted as inputs, that is **Single tone Sinusoids**, **LFM(Linear Frequency Modulated)** a.k.a **Chirp signals** and **BPSK (Binary Phase Shifted Key)** signals. The input signals are generated and is sent through a mixer. The suitable basis is analysed and selected for making the augmented basis by concatenating each of the individual dictionaries.
 
 \begin{equation}
 \boxed{
@@ -498,6 +487,15 @@ A gaussian noise is also added to check its performance in noisy environments.
 
 Initially the DCT matrix is used as the basis for the above mentioned input signals and their results are as shown,
 
+![DCT on different radar signals](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/input-dct.png){fig-align="center" width=100%}
+
+As shown above, other than the single tone sinusoids, the other two matrices are not as sparse as expected. Even though, chirp signals are expected to be not sparse, the BPSK signal is not sparse enough for reconstruction.
+
+So, for easy implementation of the dictionaries, the respective atoms are created and is used as a dictionaries, that is, the bpsk and chirp signal values are generated and filled to their respective matrix as their dictionaries.
+
+The mixer initially just added the 3 signals, but later on coefficients were added for better understanding of its sparsity. The results, however, are not really as satisfactory as expected. The signal reconstruction is as shown
+
+![Augmented Dictionary Implementation: ]()
 
 
 \newpage
