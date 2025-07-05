@@ -401,7 +401,11 @@ Coordinate Descent is a simple yet powerful optimization algorithm that is widel
 
 In the MATLAB implementation of CoD algorithm, The process begins by generating a sparse signal (z_true) and its measurement (y) using a random sensing matrix (Phi). The main loop iteratively updates each coordinate of the sparse coefficient vector (z) by applying the soft-thresholding operator, which enforces sparsity. At each iteration, the coordinate with the largest change is selected and updated to minimize the objective function. The reconstructed signal is then compared to the original, and the mean squared error (MSE) is tracked over iterations to monitor convergence. The code concludes by plotting both the original and reconstructed signals, as well as the MSE progression, illustrating the effectiveness of the CoD algorithm in recovering sparse signals.
 
-### 3.3.2 Observations & Results
+### 3.3.2 Monte Carlo Trials
+
+A python script was created for the algorithm that closely matches the MATLAB implementation and Monte Carlo Trials were conducted on the algorithm. The input values were stored in a list and these were fed to the trial algorithm. The error was calculated for a number of trials for the same input values, and only the average error is plotted to prevent unwanted variations in reconstruction.
+
+### 3.3.3 Observations & Results
 
 Two types of implementations were considered- an ideal noiseless input signal and an input signal with 10dB of noise.
 For the ideal condition, multple values of m were considered(32,64 and 128) for n = 128 and the original vs reconstructed signal graphs were plotted.
@@ -431,6 +435,11 @@ Now, for the noisy implementation m = 32 and 64 were considered for n = 128 and 
 for noisy implementation, n = 32 shows considerable error in amplitudes. Some of the smaller peaks are ignored by the algorithm. Its Iteration vs MSE graph is spiky but still shows a clear trend of convergence.
 n = 64 shows even better performance. There are still some amplitude errors, but this is very good performance for only half the samples. The Iteration vs MSE graph is much more smooth.
 Overall, the algorithm is more than capable of reconstructing a noisy signal of low resolution with managable errors.
+The Monte Carlo for CoD has been implemented in the same way as for OMP and ISTA, with varying measurements for every value of n.
+
+![Monte Carlo Trials - CoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-Python/img/montecarlo_CoD.png){fig-align="center" width=80% fig-cap="Monte Carlo Trials - CoD"}
+
+ The results show that the reconstruction error is inversely proportional to the number of measurements and proportional to the number of samples.
 
 \newpage
 
