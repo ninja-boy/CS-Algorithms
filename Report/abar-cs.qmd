@@ -504,7 +504,7 @@ The mixer initially just added the 3 signals, but later on coefficients were add
 
 ## 6.1 INTRODUCTION
 
-As explained in the sections above, the current reconstruction algorithms are iterative, hence require a long computational period before an output is generated, which hampers the real time processing of signal. One way to avoid this is improving the Reconstruction algorithms to work real time.For such a case, machine learning techniques could help. One promising approach is **algorithm unrolling** (also known as unfolding), where the iterative steps of a reconstruction algorithm are mapped onto the layers of a neural network. This technique enables the integration of domain knowledge from classical algorithms with the learning capacity of neural networks, resulting in models that are both interpretable and highly effective.
+As explained in the sections above, the current reconstruction algorithms are iterative, hence require a long computational period before an output is generated, which hampers the real time processing of signal. One way to avoid this is improving the Reconstruction algorithms to work real time.For such a case, machine learning techniques could help. One promising approach is **algorithm unrolling** (also known as unfolding), where the iterative steps of a reconstruction algorithm are mapped onto the layers of a neural network[@fast-sparse-coding]. This technique enables the integration of domain knowledge from classical algorithms with the learning capacity of neural networks, resulting in models that are both interpretable and highly effective.
 
 Algorithm unrolling involves representing each iteration of an algorithm—such as ISTA or OMP—as a layer in a neural network. The parameters of these layers (e.g., thresholds, step sizes, or transforms) can then be learned from data, allowing the network to adapt to the specific characteristics of the signals and measurement process. This approach not only accelerates convergence compared to traditional iterative methods but also improves reconstruction quality, especially in challenging scenarios with noise or model mismatch.
 
@@ -525,7 +525,7 @@ Learned ISTA (LISTA) is a neural network-based approach that unrolls the traditi
 
 ### 6.3.1 Algorithm Implementation
 
-add here.......
+The algorithm implemented here has been improvised from the Python implementation of LISTA from [@shlezinger_modelbaseddeeplearning]. All the required packages were imported and the seed was fixed for reproducibility. A simulated dataset was generated with a random dictionary and sparse signal. This was plotted. First the ISTA algorithm was applied to the test set. The untrained LISTA algorithm was then applied to the dataset, and the results were compared with the standard ISTA algorithm. Now, the learned LISTA algorithm was applied to the dataset, and the results were compared with the standard ISTA algorithm.
 
 ### 6.3.2 Observations
 
@@ -537,7 +537,9 @@ The Learned Coordinate Descent (LCoD) algorithm is an optimization technique tha
 
 ### 6.4.1 Algorithm Implementation
 
-add here..........
+The Iterations vs MSE plot of ISTA vs Untrained LISTA shows clear convergence. The untrained LISTA and classic ISTA algorithms should be mathematically equivalent,but the starting point of both algorithms are different, indicating issues with equivalence. But both algorithms converge to the same reconstruction error.
+
+
 
 ### 6.4.2 Observations
 
