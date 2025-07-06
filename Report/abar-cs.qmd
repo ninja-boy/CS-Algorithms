@@ -428,7 +428,7 @@ The Monte Carlo for CoD has been implemented in the same way as for OMP and ISTA
 
 ![Monte Carlo Trials - CoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-Python/img/montecarlo_CoD.png){fig-align="center" width=80% fig-cap="Monte Carlo Trials - CoD"}
 
- The results show that the reconstruction error is inversely proportional to the number of measurements and proportional to the number of samples.
+ The results show that the reconstruction error is inversely proportional to the number of measurements m and proportional to the length n.
 
 \newpage
 
