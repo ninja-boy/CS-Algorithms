@@ -428,7 +428,7 @@ The Monte Carlo for CoD has been implemented in the same way as for OMP and ISTA
 
 ![Monte Carlo Trials - CoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-Python/img/montecarlo_CoD.png){fig-align="center" width=80% fig-cap="Monte Carlo Trials - CoD"}
 
- The results show that the reconstruction error is inversely proportional to the number of measurements and proportional to the number of samples.
+ The results show that the reconstruction error is inversely proportional to the number of measurements m and proportional to the length n.
 
 \newpage
 
@@ -534,7 +534,7 @@ Algorithm unfolding is a technique that transforms iterative algorithms (like th
 **Adaptability**: The unfolded structure can be trained end-to-end, allowing it to adapt to specific data distributions or tasks.
 **Performance**: Often achieves better accuracy and robustness compared to standard iterative algorithms, especially when combined with data-driven learning.
 
-## 6.3 Learned ISTA (LISTA)
+## 6.3 LEARNED ISTA (LISTA)
 
 Learned ISTA (LISTA) is a neural network-based approach that unrolls the traditional ISTA algorithm into a fixed number of layers, where each layer mimics one iteration of ISTA. Unlike standard ISTA, where parameters such as step size and thresholds are fixed, LISTA learns these parameters from data during training. This enables faster convergence and improved reconstruction accuracy. Each layer of the LISTA network consists of a linear transformation followed by a non-linear shrinkage (soft-thresholding) operation, and the parameters of these operations are optimized by successive iterations. As a result, LISTA combines the interpretability of classical algorithms with the adaptability and efficiency of deep learning, making it well-suited for real-time and large-scale compressed sensing applications.
 
@@ -542,7 +542,7 @@ Learned ISTA (LISTA) is a neural network-based approach that unrolls the traditi
 
 The algorithm implemented here has been improvised from the Python implementation of LISTA from [@shlezinger_modelbaseddeeplearning]. All the required packages were imported and the seed was fixed for reproducibility. A simulated dataset was generated with a random dictionary and sparse signal. This was plotted. 
 
-![Plot of Simulated Data](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\sample_seed.png){fig-align="center" width=100%}
+![Plot of Simulated Data](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/sample_seed.png){fig-align="center" width=100%}
 
 First the ISTA algorithm was applied to the test set. The untrained LISTA algorithm was then applied to the dataset, and the results were compared with the standard ISTA algorithm. Now, the learned LISTA algorithm was applied to the dataset, and the results were compared with the standard ISTA algorithm.
 
@@ -550,31 +550,58 @@ First the ISTA algorithm was applied to the test set. The untrained LISTA algori
 
 The Iterations vs MSE plot of ISTA and Untrained LISTA shows clear convergence. The untrained LISTA and classic ISTA algorithms should be mathematically equivalent,but the starting point of both algorithms are different, indicating issues with equivalence. But both algorithms converge to the same reconstruction error.
 
-![ISTA vs Untrained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\ista_vs_trained_lista.png){fig-align="center" width=100%}
+![ISTA vs Untrained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/ista_vs_trained_lista.png){fig-align="center" width=100%}
 
 The iterations vs MSE plot of ISTA vs Trained LISTA is given below. The trained LISTA algorithm converges to a better reconstruction error than the untrained LISTA algorithm, using very low numbers of iterations. The starting point of both algorithms is different, indicating the same issues with equivalence as that of the above plot. 
 
-![ISTA vs trained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\ista_vs_untrained_lista.png){fig-align="center" width=100%}
+![ISTA vs trained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/ista_vs_untrained_lista.png){fig-align="center" width=100%}
 
-The conclusion is that Learned ISTA (LISTA) method is more than capable of replacing ISTA, combining the interpretability of classic ISTA with the adaptability and efficiency of neural networks. The results show that algorithm unrolling can significantly improve the performance of iterative algorithms for a fraction of the number of iterations.
+The conclusion is that Learned ISTA (LISTA) method is more than capable of replacing ISTA, combining the interpretability of classic ISTA with the adaptability and efficiency of neural networks.
 
-## 6.4 Learned CoD (LCoD)
+## 6.4 LEARNED COORDINATE DESCENT (LCoD)
 
 The Learned Coordinate Descent (LCoD) algorithm is an optimization technique that iteratively updates one coordinate (variable) at a time to minimize a target function. Unlike standard coordinate descent, LCoD leverages machine learning to adaptively select which coordinate to update and how much to change it, based on patterns learned from data. This approach can lead to faster convergence and improved performance, especially in high-dimensional or structured problems.
 
 ### 6.4.1 Algorithm Implementation
+The code follows the same algorithmic flow as the previous Python implementation of LISTA. All the required packages were imported and the seed was fixed for reproducibility. A simulated dataset was generated with a random dictionary and sparse signal.
 
+![Plot of Simulated Data](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/sample_seed_cod.png){fig-align="center" width=100%}
 
-
-
+First the CoD algorithm was applied to the test set. The untrained LCoD algorithm was then applied to the dataset, and the results were compared with the standard CoD algorithm. Now, the learned LCoD algorithm was applied to the dataset, and the results were compared with the standard CoD algorithm.
 
 ### 6.4.2 Observations
 
-add here..............
+The Iterations vs MSE plot of CoD and Untrained LCoD shows that both algorithms are mathematically equivalent. This is illustated in the plot below. This is so, since no optimisations or changes were made to the standard iterative step of CoD to create unrolled iterative step of LCoD.
+
+![COD vs Untrained LCoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/CoDvsUntrainedCoD.png){fig-align="center" width=100%}
+
+The iterations vs MSE plot of CoD vs Trained lCoD is given below. The trained LISTA algorithm converges to a better reconstruction error than the untrained LISTA algorithm, using lesser numbers of iterations.
+
+![COD vs trained LCoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/CoDvsTrainedCoDpng){fig-align="center" width=100%}
+
+A similar conclusion is made to the previous section. 
 
 ## 6.5 COMPARING BOTH ALGORITHMS
 
-add here..............
+A Python implementation comparing the performance of Learned ISTA (LISTA) and Learned CoD (LCoD) algorithms on a simulated dataset is provided. 
+
+![Comparison of LISTA and LCoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/lista_vs_lcod.png){fig-align="center" width=100%}
+
+The plot above compares the MSE vs Iterations graph of Learned ISTA (LISTA) and Learned CoD (LCoD) algorithms. Both algorithms converge to the same reconstruction error. However, two major observations were made:
+
+1. The iterations of LISTA is more inefficient compared to LCoD.
+
+This is because CoD is an iterative algorithm that selects and updates one coordinate at a time greedily, hence it is guaranteed that it would converge to a lesser MSE per iteration. ISTA does not have such guarantees, hence LISTA may have higher MSE than LCoD at the same number of iterations.
+
+2. LCoD have higher computation time per iteration compared to LISTA.
+
+As explained above, CoD selects and updates coordinates one at a time per iteration, hence it is more computationally expensive. Also, The iterative step of CoD in the current is not optimised for torch operations, therfore steps involving torch operations take longer to compute. The algorithm is serial by definition, thus training involving batch operations needs workarounds to make it happen. Hence, the current implementation takes longer time to compute than ISTA or LISTA for the given problem.
+
+The faster computation time of LISTA is beneficial for real-time signal processing applications involving small-scale and parallelised computing. But for larger scale LASSO problems, LCoD can be more efficient, since the convergence guarentee of CoD means even though individual iterations can be time-consuming, the number of iterations required is much lower, which means the total computation time compared to LISTA is less.
+
+## 6.6 FINAL REMARKS
+
+The above observations show  that Algorithm unrolling can significantly improve the performance of iterative algorithms for a fraction of the number of iterations. This method combines low sampling requirement of compressed sensing algorithms with lower time complexity of learned ML models, both of which are important requirements for real-time signal processing applications. 
 
 \newpage
 
