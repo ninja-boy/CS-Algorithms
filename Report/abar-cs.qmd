@@ -591,7 +591,7 @@ The faster computation time of LISTA is beneficial for real-time signal processi
 
 ## 6.6 FINAL REMARKS
 
-Theabove observations show  that Algorithm unrolling can significantly improve the performance of iterative algorithms for a fraction of the number of iterations. This method combines low sampling requirement of compressed sensing algorithms with lower time complexity of learned ML models, both of which are important requirements for real-time signal processing applications. 
+The above observations show  that Algorithm unrolling can significantly improve the performance of iterative algorithms for a fraction of the number of iterations. This method combines low sampling requirement of compressed sensing algorithms with lower time complexity of learned ML models, both of which are important requirements for real-time signal processing applications. 
 
 \newpage
 
