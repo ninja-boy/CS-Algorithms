@@ -503,6 +503,16 @@ so, now instead of just simply adding the signals as it is, coefficients were ad
 
 ![Augmented Dictionary Implementation (Ideal) with mixer: n=128 m=64](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/n128-m64-ideal-mixer.png)
 
+It is observed that the reconstruction error is pretty significant compared to the overall amplitude of the input signal
+
+## 5.4 CONCLUSION
+
+From the above implementation, a number of conclusions can be drawn.
+
+1. Augmented dictionary is a good attempt for assessing different types of radar inputs, but still need to be defined.
+
+2. 
+
 \newpage
 
 \mainsection{CHAPTER 6: RECONSTRUCTION ALGORITHM UNROLLING}
@@ -570,7 +580,8 @@ add here..............
 
 \mainsection{CHAPTER 7: FUTURE SCOPE}
 
-*Summary and conclusion go here...*
+
+
 \newpage
 
 
