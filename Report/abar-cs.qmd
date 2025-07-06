@@ -111,22 +111,22 @@ This project explores the application of compressed sensing techniques to radar 
 \tocline{\hspace*{2em}5.2 Implementation \dotfill 27}
 \tocline{\hspace*{2em}5.3 Observations and Results \dotfill 28}
 
-\tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 23}
-\tocline{\hspace*{2em}6.1 Introduction \dotfill 23}
-\tocline{\hspace*{2em}6.2 Advantages \dotfill 23}
-\tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 24}
-\tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 24}
-\tocline{\hspace*{4em}6.3.2 Observations \dotfill 24}
-\tocline{\hspace*{2em}6.4 Learned CoD (LCoD) \dotfill 25}
-\tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 25}
-\tocline{\hspace*{4em}6.4.2 Observations \dotfill 25}
-\tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 26}
+\tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 31}
+\tocline{\hspace*{2em}6.1 Introduction \dotfill 31}
+\tocline{\hspace*{2em}6.2 Advantages \dotfill 32}
+\tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 32}
+\tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 32}
+\tocline{\hspace*{4em}6.3.2 Observations \dotfill 32}
+\tocline{\hspace*{2em}6.4 Learned CoD (LCoD) \dotfill 32}
+\tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 32}
+\tocline{\hspace*{4em}6.4.2 Observations \dotfill 33}
+\tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 33}
 
-\tocline{\textbf{7. Future Scope} \dotfill 27}
+\tocline{\textbf{7. Future Scope} \dotfill 34}
 
-\tocline{\textbf{References} \dotfill 28}
+\tocline{\textbf{References} \dotfill 35}
 
-\tocline{\textbf{Appendices} \dotfill 29}
+\tocline{\textbf{Appendices} \dotfill 36}
 
 \newpage
 \pagenumbering{arabic}
@@ -495,8 +495,13 @@ So, for easy implementation of the dictionaries, the respective atoms are create
 
 The mixer initially just added the 3 signals, but later on coefficients were added for better understanding of its sparsity. The results, however, are not really as satisfactory as expected. The signal reconstruction is as shown
 
-![Augmented Dictionary Implementation: ]()
+![Augmented Dictionary Implementation (Ideal): n=128 m=64](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/n128-m64-ideal.png)
 
+![Augmented Dictionary Implementation (Noisy): n=128 m=64](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/n128-m64-noisy.png)
+
+so, now instead of just simply adding the signals as it is, coefficients were added (a, b, c) such that each component of the input signal can be tuned for observation.
+
+![Augmented Dictionary Implementation (Ideal) with mixer: n=128 m=64](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/n128-m64-ideal-mixer.png)
 
 \newpage
 
