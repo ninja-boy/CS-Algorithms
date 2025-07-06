@@ -79,6 +79,9 @@ ABSTRACT
 
 This project explores the application of compressed sensing techniques to radar signal processing, aiming to overcome the limitations imposed by traditional Nyquist sampling. It also presents the theoretical foundations of compressed sensing, details key reconstruction algorithms such as Orthogonal Matching Pursuit (OMP), Iterative Shrinkage Thresholding Algorithm (ISTA), and Coordinate Descent (CoD), and evaluates their performance through simulations and Monte Carlo trials. The results demonstrate the effectiveness and trade-offs of these algorithms in both noiseless and noisy environments, highlighting their potential for efficient and robust radar signal acquisition and processing. The project also explores the future possibilities and modifications for these algorithms for executing real time RADAR processing.
 
+The GitHub repository for all the code and results can be accessed: [CS Algorithms](https://github.com/ninja-boy/CS-Algorithms)
+
+
 \newpage
 
 \mainsection{TABLE OF CONTENTS}
@@ -113,7 +116,7 @@ This project explores the application of compressed sensing techniques to radar 
 \tocline{\hspace*{2em}5.3 Observations and Results \dotfill 29}
 
 \tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 32}
-\tocline{\hspace*{2em}6.1 Introduction \dotfill 32
+\tocline{\hspace*{2em}6.1 Introduction \dotfill 32}
 \tocline{\hspace*{2em}6.2 Advantages \dotfill 32}
 \tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 33}
 \tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 33}
@@ -122,7 +125,7 @@ This project explores the application of compressed sensing techniques to radar 
 \tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 37}
 \tocline{\hspace*{4em}6.4.2 Observations \dotfill 38}
 \tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 39}
-\tocline{\hspace*{2em}6.5 Final REmarks \dotfill 41}
+\tocline{\hspace*{2em}6.6 Final Remarks \dotfill 41}
 
 \tocline{\textbf{7. Future Scope} \dotfill 42}
 
