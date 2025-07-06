@@ -102,31 +102,33 @@ This project explores the application of compressed sensing techniques to radar 
 \tocline{\hspace*{4em}3.2.2 Observations \& Results \dotfill 15}
 \tocline{\hspace*{2em}3.3 Coordinate Descent (CoD) \dotfill 20}
 \tocline{\hspace*{4em}3.3.1 Algorithm Implementation \dotfill 20}
-\tocline{\hspace*{4em}3.3.2 Observations \& Results \dotfill 21}
+\tocline{\hspace*{4em}3.3.2 Monte Carlo Trials \dotfill 21}
+\tocline{\hspace*{4em}3.3.3 Observations \& Results \dotfill 21}
 
-\tocline{\textbf{4. Real Time Processing of RADAR Signals} \dotfill 26}
+\tocline{\textbf{4. Real Time Processing of RADAR Signals} \dotfill 27}
 
-\tocline{\textbf{5. Blind Reconstruction Using Augmented Dictionary} \dotfill 27}
-\tocline{\hspace*{2em}5.1 Introduction \dotfill 27}
-\tocline{\hspace*{2em}5.2 Implementation \dotfill 27}
-\tocline{\hspace*{2em}5.3 Observations and Results \dotfill 28}
+\tocline{\textbf{5. Blind Reconstruction Using Augmented Dictionary} \dotfill 28}
+\tocline{\hspace*{2em}5.1 Introduction \dotfill 28}
+\tocline{\hspace*{2em}5.2 Implementation \dotfill 28}
+\tocline{\hspace*{2em}5.3 Observations and Results \dotfill 29}
 
-\tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 31}
-\tocline{\hspace*{2em}6.1 Introduction \dotfill 31}
+\tocline{\textbf{6. Reconstruction Algorithm Unrolling} \dotfill 32}
+\tocline{\hspace*{2em}6.1 Introduction \dotfill 32
 \tocline{\hspace*{2em}6.2 Advantages \dotfill 32}
-\tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 32}
-\tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 32}
-\tocline{\hspace*{4em}6.3.2 Observations \dotfill 32}
-\tocline{\hspace*{2em}6.4 Learned CoD (LCoD) \dotfill 32}
-\tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 32}
-\tocline{\hspace*{4em}6.4.2 Observations \dotfill 33}
-\tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 33}
+\tocline{\hspace*{2em}6.3 Learned ISTA (LISTA) \dotfill 33}
+\tocline{\hspace*{4em}6.3.1 Algorithm Implementation \dotfill 33}
+\tocline{\hspace*{4em}6.3.2 Observations \dotfill 35}
+\tocline{\hspace*{2em}6.4 Learned CoD (LCoD) \dotfill 36}
+\tocline{\hspace*{4em}6.4.1 Algorithm Implementation \dotfill 37}
+\tocline{\hspace*{4em}6.4.2 Observations \dotfill 38}
+\tocline{\hspace*{2em}6.5 Comparing Both Algorithms \dotfill 39}
+\tocline{\hspace*{2em}6.5 Final REmarks \dotfill 41}
 
-\tocline{\textbf{7. Future Scope} \dotfill 34}
+\tocline{\textbf{7. Future Scope} \dotfill 42}
 
-\tocline{\textbf{References} \dotfill 35}
+\tocline{\textbf{References} \dotfill 43}
 
-\tocline{\textbf{Appendices} \dotfill 36}
+\tocline{\textbf{Appendices} \dotfill 44}
 
 \newpage
 \pagenumbering{arabic}
@@ -613,7 +615,7 @@ This report lays a solid foundation for advanced research and practical applicat
 
 3. Instead of augmented dictionary, a learned dictionary (Autoencoder) can be used for predicting the non-linear radar signals.
 
-4. Optimise torch operations for LCoD
+4. Optimise torch operations for LCoD.
 
 5. Trying to implement the real time processing into a hardware (FPGAs/Embedded GPUs) by reducing model size and complexity for low latency power.
 
