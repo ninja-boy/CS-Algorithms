@@ -483,7 +483,7 @@ where $\Psi_{\text{sinusoid}}$, $\Psi_{\text{LFM}}$, and $\Psi_{\text{BPSK}}$ ar
 
 A gaussian noise is also added to check its performance in noisy environments.
 
-## 5.3 OBSERVATIONS AND RESULTS
+## 5.3 OBSERVATIONS & RESULTS
 
 Initially the DCT matrix is used as the basis for the above mentioned input signals and their results are as shown,
 
@@ -503,15 +503,13 @@ so, now instead of just simply adding the signals as it is, coefficients were ad
 
 ![Augmented Dictionary Implementation (Ideal) with mixer: n=128 m=64](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/Aug-Dict/img/n128-m64-ideal-mixer.png)
 
-It is observed that the reconstruction error is pretty significant compared to the overall amplitude of the input signal
+It is observed that the reconstruction error is pretty significant compared to the overall amplitude of the input signal.
 
-## 5.4 CONCLUSION
+From the above implementation, we can say that the augmeneted dictionary is a good attempt in assessing multiple radar input signals. But despite that, the dictionary still needs to be pre-defined. 
 
-From the above implementation, a number of conclusions can be drawn.
+Moreover, most of the other radar signals are non-linear and some of these signals can't have a basis for sparsity.
 
-1. Augmented dictionary is a good attempt for assessing different types of radar inputs, but still need to be defined.
-
-2. 
+The best option is to adopt a learned method, or autoencoder to learn a non-linear based basis for all the possible trained signals.
 
 \newpage
 
@@ -607,7 +605,17 @@ The above observations show  that Algorithm unrolling can significantly improve 
 
 \mainsection{CHAPTER 7: FUTURE SCOPE}
 
+This report lays a solid foundation for advanced research and practical applications in compresses sensing for radar signal processing.
 
+1. In this project, the input signals are purely real, hence the use of DCT as basis. But in real life applications, the phase (complex) part is also applicable.
+
+2. We have explored different reconstruction algorithms (like OMP, ISTA, CoD). The reconstruction can be further enhanced by other advanced algorithms like Fast ISTA (FISTA) or Alternating Direction Method of Multipliers (ADMM).
+
+3. Instead of augmented dictionary, a learned dictionary (Autoencoder) can be used for predicting the non-linear radar signals.
+
+4. Optimise torch operations for LCoD
+
+5. Trying to implement the real time processing into a hardware
 
 \newpage
 
@@ -622,14 +630,10 @@ The above observations show  that Algorithm unrolling can significantly improve 
 \newpage
 
 \mainsection{APPENDICES}
-**CODE:-**
-- **OMP Implementation (Python)**
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.fftpack import dct, idct
-from numpy.linalg import norm
+**FUNCTION:-**
 
+- **Sine Wave Generator**
+```{python}
 def generate_sine_signal(n, k, freq=5, fs=100):
     t = np.arange(n) / fs
     sum_signal = np.zeros(n)
@@ -637,11 +641,21 @@ def generate_sine_signal(n, k, freq=5, fs=100):
         freq = i * 5
         sum_signal += np.sin(2 * np.pi * freq * t)
     return sum_signal
+```
 
-def measurement(m, n):
-    Psi = idct(np.eye(n), norm='ortho')
-    Phi = np.random.randn(m, n)
-    return Phi @ Psi
+- **Noise Generator**
+```{python}
+def add_noise(y, snr_db):
+    signal_power = np.mean(np.abs(y)**2)
+    snr_linear = 10**(snr_db / 10)
+    noise_power = signal_power / snr_linear
+    noise = np.sqrt(noise_power) * np.random.randn(*y.shape)
+    return y + noise
+```
+
+- **OMP Function (Python)**
+```{python}
+import numpy as np
 
 def omp(y, A, tol=1e-6):
     m, n = A.shape
@@ -661,42 +675,9 @@ def omp(y, A, tol=1e-6):
 
     x_hat[idx_set] = x_ls
     return x_hat
-
-def add_noise(y, snr_db):
-    signal_power = np.mean(np.abs(y)**2)
-    snr_linear = 10**(snr_db / 10)
-    noise_power = signal_power / snr_linear
-    noise = np.sqrt(noise_power) * np.random.randn(*y.shape)
-    return y + noise
-
-n = 128
-m = 64
-k = 3
-snr_db = 10
-
-x_time = generate_sine_signal(n, k, 5)
-x_sparse = dct(x_time, norm='ortho')
-A = measurement(m, n)
-y = A @ x_sparse
-y_noisy = add_noise(y, snr_db)
-x_sparse_rec = omp(y, A)
-x_time_rec = idct(x_sparse_rec, norm='ortho')
-
-print("\nReconstruction error (L2 norm):", norm(x_time - x_time_rec))
-
-plt.figure(figsize=(14, 6))
-plt.plot(x_time, label="Original Sine Signal", linewidth=2)
-plt.plot(x_time_rec, '--r', label="Reconstructed Signal", linewidth=2)
-plt.title("Sine Signal: Signal Reconstruction using DCT and OMP")
-plt.xlabel("Sample Index")
-plt.ylabel("Amplitude")
-plt.legend()
-plt.axhline(0, color='black', linewidth=0.8)
-plt.axvline(0, color='black', linewidth=0.8)
-plt.show()
 ```
 
-- **OMP Implementation(MATLAB)**
+- **OMP Function (MATLAB)**
 ```{matlab}
 clc; close all; clear all;
 function x = omp(A, b, K)
@@ -722,68 +703,14 @@ function x = omp(A, b, K)
         r = b - originalA(:, Lambda) * x(Lambda);   % Corrected
     end
 end
-
-n = 256;     
-m = 50;      
-k = 2;        
-
-freqs = [randi([1, 10]),randi([1, 10])];              
-x_freq = zeros(n, 1);              
-x_freq(freqs) = [1; 1];            
-x_time = real(ifft(x_freq))*n;       
-
-psi = randn(m,n);                  
-b = psi * x_time;                     
-
-phi = dftmtx(n);
-Theta = psi * phi';                    
-
-x_freq_rec = omp(Theta, b, k);      
-x_rec = real(ifft(x_freq_rec))*n;    
-
-figure;
-t = 0:n-1;
-
-% Plot the original and recovered signals smoothly
-plot(t, x_time, 'b-'); hold on;
-plot(t, x_rec, 'r--');
-legend;
-xlabel('Index');
-ylabel('Amplitude');
-title('OMP (sinusoidal)');
 ```
 
-- **Measurements**
+- **Monte-Carlo Trial**
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.fftpack import dct, idct
 from numpy.linalg import norm
-
-def generate_sine_signal(n, fs=100):
-    t = np.arange(n) / fs
-    return np.sin(2*np.pi*5*t)+np.sin(2*np.pi*10*t)+np.sin(2*np.pi*20*t)
-
-def measurement(m, n):
-    Psi = idct(np.eye(n), norm='ortho')
-    Phi = np.random.randn(m, n)
-    return Phi @ Psi
-
-def omp(y, A, tol=1e-6):
-    m, n = A.shape
-    r = y.copy()
-    idx_set = []
-    x_hat = np.zeros(n)
-    for _ in range(m):
-        correlations = A.T @ r
-        idx = np.argmax(np.abs(correlations))
-        if idx not in idx_set:
-            idx_set.append(idx)
-        A_selected = A[:, idx_set]
-        x_ls, _, _, _ = np.linalg.lstsq(A_selected, y, rcond=None)
-        r = y - A_selected @ x_ls
-    x_hat[idx_set] = x_ls
-    return x_hat
 
 def monte_carlo_trial(n, m, sampling_rate):
     x_time = generate_sine_signal(n, sampling_rate)
@@ -799,6 +726,8 @@ def monte_carlo_trial(n, m, sampling_rate):
 num_trials = 50
 n_values = [64, 128, 256]
 m_values = np.arange(2, 65, 2)  # Number of measurements
+noise_val = np.arange(0, 51, 5)  # Noise levels in dB
+k_values = np.arange(1, 11, 1)  # Sparsity levels
 sampling_rate = 100
 
 plt.figure(figsize=(10, 6))
@@ -814,156 +743,198 @@ for n in n_values:
             errors.append(monte_carlo_trial(n, m, sampling_rate))
         avg_errors.append(np.mean(errors))
     plt.plot(m_values, avg_errors, marker='o', label=f'n={n}')
+```
 
-plt.title("Monte Carlo: Avg Reconstruction Error vs. No of Measurements")
-plt.xlabel("Number of Measurements (m)")
-plt.ylabel("Average Reconstruction Error (L2 norm)")
+- **ISTA Function (Python)**
+```{python}
+def soft_thresholding(x, threshold):
+    """Soft thresholding operator h_{alpha/L}"""
+    return np.sign(x) * np.maximum(np.abs(x) - threshold, 0.0)
+
+def ista(X, W_d, max_iter=200, tol=1e-6):
+    alpha = 0.1
+    L = 1.1 * np.linalg.norm(W_d.T @ W_d, 2)  
+    # L > max eigenvalue of W_d.T @ W_d
+    m, n = W_d.shape
+    Z = np.zeros(n)
+    for _ in range(max_iter):
+        Z_old = Z.copy()
+        gradient = W_d.T @ (W_d @ Z - X)
+        Z -= gradient / L
+        Z = soft_thresholding(Z - (1.0 / L) * gradient, alpha / L)
+        if np.linalg.norm(Z - Z_old, ord = 2) < tol:
+            break
+    return Z
+```
+
+- **CoD Function (MATLAB)**
+```{matlab}
+% Coordinate Descent Algorithm
+ z = zeros(n,1);
+B = theta' * y;  % Initial coefficients
+S = eye(n) - theta' * theta;  % Residual matrix
+
+mse_history = zeros(i,1); % Preallocate MSE array
+
+for t = 1:i
+    z_bar = sign(B) .* max(abs(B) - alpha, 0); % Thresholding step
+    [~, k] = max(abs(z - z_bar));     % Find index of maximum change         
+
+    delta = z_bar(k) - z(k);  % Update step
+    B = B + S(:,k) * delta; % Update coefficients
+    z(k) = z_bar(k); % Update sparse coefficient
+
+    x_rec_iter = Psi * z; % Reconstruct at this iteration
+    mse_history(t) = mean((x - x_rec_iter).^2); % Compute MSE
+end
+
+x_rec = Psi * z;    % recovered signal
+```
+
+- **RADAR signal Generator**
+```{python}
+import numpy as np
+import torch
+from scipy.signal import chirp
+
+def generate_sine_signals(batch_size, length, freq_range=(1, 10)):
+    t = np.linspace(0, 1, length)
+    signals = []
+    for _ in range(batch_size):
+        freq = np.random.uniform(*freq_range)
+        phase = np.random.uniform(0, 2*np.pi)
+        signal = np.sin(2 * np.pi * freq * t + phase)
+        signals.append(signal)
+    return torch.tensor(signals, dtype=torch.float32)
+
+def generate_bpsk_signals(batch_size, length):
+    symbols = 2 * torch.randint(0, 2, (batch_size, length)) - 1
+    return symbols.float()
+
+def generate_chirp_signals(batch_size, length, f0=5, f1=50):
+    t = np.linspace(0, 1, length)
+    signals = []
+    for _ in range(batch_size):
+        signal = chirp(t, f0=f0, f1=f1, t1=1, method='linear')
+        signals.append(signal)
+    return torch.tensor(signals, dtype=torch.float32)
+
+batch_size = 1
+length = 200
+sine_signals = generate_sine_signals(batch_size, length)
+bpsk_signals = generate_bpsk_signals(batch_size, length)
+chirp_signals = generate_chirp_signals(batch_size, length)
+```
+
+- **Augmeneted Dictionary**
+
+```{python}
+
+import numpy as np
+from scipy.fftpack import dct, idct
+import matplotlib.pyplot as plt
+
+def soft_thresholding(x, threshold):
+    """Soft thresholding operator h_{alpha/L}"""
+    return np.sign(x) * np.maximum(np.abs(x) - threshold, 0.0)
+
+def ista(X, W_d, max_iter=200, tol=1e-6):
+    alpha = 0.1
+    L = 1.1 * np.linalg.norm(W_d.T @ W_d, 2)  
+    # L > max eigenvalue of W_d.T @ W_d
+    m, n = W_d.shape
+    Z = np.zeros(n)
+    for _ in range(max_iter):
+        Z_old = Z.copy()
+        gradient = W_d.T @ (W_d @ Z - X)
+        Z -= gradient / L
+        Z = soft_thresholding(Z - (1.0 / L) * gradient, alpha / L)
+        if np.linalg.norm(Z - Z_old, ord = 2) < tol:
+            break
+    return Z
+
+# 1. Signal Setup
+n = int(input("Enter length of signal (n): "))  # Signal length
+t = np.linspace(0, 1, n)
+
+# Sinusoidal component (tone)
+tone = np.cos(2 * np.pi * 10 * t)
+
+# BPSK component
+bits = np.random.randint(0, 2, n)
+bpsk = (2 * bits - 1) * np.cos(2 * np.pi * 5 * t)
+
+# Chirp component
+f0, k = 5, 80
+chirp = np.cos(2 * np.pi * (f0 * t + 0.5 * k * t**2))
+
+# Mixed signal 
+a, b, c = 1, 1, 1  # Coefficients for mixing
+signal = a*tone + b*bpsk + c*chirp
+
+# Sub-dictionary 1: DCT
+D_dct = np.eye(n)
+D_dct = idct(D_dct, norm='ortho').T
+
+# Sub-dictionary 2: Chirp-like atoms
+def generate_chirp_atoms(n, num_atoms):
+    t = np.linspace(0, 1, n)
+    D_chirp = np.zeros((n, num_atoms))
+    for i in range(num_atoms):
+        f0 = np.random.uniform(5, 20)
+        k = np.random.uniform(10, 100)
+        D_chirp[:, i] = np.cos(2 * np.pi * (f0 * t + 0.5 * k * t**2))
+    D_chirp /= np.linalg.norm(D_chirp, axis=0)
+    return D_chirp
+
+D_chirp = generate_chirp_atoms(n, n)
+
+# Sub-dictionary 3: BPSK atoms
+def generate_bpsk_atoms(n, num_atoms, fc=5, fs=100):
+    t = np.arange(n) / fs
+    D_bpsk = np.zeros((n, num_atoms))
+    for i in range(num_atoms):
+        bits = np.random.randint(0, 2, n)
+        symbols = 2 * bits - 1
+        D_bpsk[:, i] = symbols * np.cos(2 * np.pi * fc * t)
+    # Normalize atoms
+    D_bpsk /= np.linalg.norm(D_bpsk, axis=0)
+    return D_bpsk
+
+# Usage:
+D_bpsk = generate_bpsk_atoms(n, n)
+D_total = np.concatenate([D_dct, D_dct, D_chirp], axis=1)
+
+# Compressed Measurement
+m = int(input("Enter number of compressed samples (m < n): "))  # Compressed samples
+Phi = np.random.randn(m, n)# / np.sqrt(k)  # Measurement matrix
+y = Phi @ signal
+
+# Add noise to the measurements
+snr_db = int(input("Enter noise to be added (dB): "))  # Signal-to-noise ratio in dB
+y_noisy = add_noise(y, snr_db)
+
+# Construct sensing matrix (Theta)
+A = Phi @ D_total
+
+# Sparse Recovery using ISTA
+#z = ista(y_noisy, A)
+z = omp(y, A)
+signal_hat = D_total @ z
+
+# Calculate reconstruction error
+error = np.linalg.norm(signal - signal_hat)
+print(f"Reconstruction error (L2 norm): {error:.4f}")
+
+# 9. Plot original and reconstructed
+plt.figure(figsize=(10, 4))
+plt.plot(t, signal, label="Original Mixed Signal")
+plt.plot(t, signal_hat, '--', label="Reconstructed Signal (ISTA)")
+plt.title("Mixed Signal Reconstruction from Compressed Measurements")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
 plt.legend()
 plt.grid(True)
-plt.show()
-```
-
-- **Sparsity**
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.fftpack import dct, idct
-from numpy.linalg import norm
-
-def generate_sine_signal(n, k, freq=5, fs=100):
-    t = np.arange(n) / fs
-    sum_signal = np.zeros(n)
-    for i in range(1, k + 1):
-        freq = i * 5
-        sum_signal += np.sin(2 * np.pi * freq * t)
-    return sum_signal
-
-def measurement(m, n):
-    Psi = idct(np.eye(n), norm='ortho')
-    Phi = np.random.randn(m, n)
-    return Phi @ Psi
-
-def omp(y, A, tol=1e-6):
-    m, n = A.shape
-    r = y.copy()
-    idx_set = []
-    x_hat = np.zeros(n)
-    for _ in range(m):
-        correlations = A.T @ r
-        idx = np.argmax(np.abs(correlations))
-        if idx not in idx_set:
-            idx_set.append(idx)
-        A_selected = A[:, idx_set]
-        x_ls, _, _, _ = np.linalg.lstsq(A_selected, y, rcond=None)
-        r = y - A_selected @ x_ls
-    x_hat[idx_set] = x_ls
-    return x_hat
-
-def monte_carlo_trial(sampling_rate, k, n=128, m=80):
-    x_time = generate_sine_signal(n, k, 5, sampling_rate)
-    x_sparse = dct(x_time, norm='ortho')
-    A = measurement(m, n)
-    y = A @ x_sparse
-    x_sparse_rec = omp(y, A)
-    x_time_rec = idct(x_sparse_rec, norm='ortho')
-    error = norm(x_time - x_time_rec, ord=2)
-    return error
-    
-# ---- Monte Carlo Simulation and Plotting ----
-num_trials = 50
-n_values = [64, 128, 256]
-m_values = np.arange(2, 65, 2)  # Number of measurements
-noise_val = np.arange(0, 51, 5)  # Noise levels in dB
-k_values = np.arange(1, 11, 1)  # Sparsity levels
-sampling_rate = 100
-
-plt.figure(figsize=(10, 6))
-avg_errors = []
-for k in k_values:
-    errors = []
-    for _ in range(num_trials):
-        errors.append(monte_carlo_trial(sampling_rate, k))
-    avg_errors.append(np.mean(errors))  
-
-plt.plot(k_values, avg_errors, marker='o')
-plt.title("Monte Carlo: Avg Reconstruction Error vs Sparsity Level (k)")
-plt.xlabel("Sparsity Level (k)")
-plt.xticks(k_values)
-plt.ylabel("Average Reconstruction Error (L2 norm)")
-plt.grid(True)
-plt.show()
-```
-
-- **Noise**
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.fftpack import dct, idct
-from numpy.linalg import norm
-
-def generate_sine_signal(n, freq=5, fs=100):
-    t = np.arange(n) / fs
-    return np.sin(2*np.pi*freq*t)+np.sin(2*np.pi*10*t)+np.sin(2*np.pi*20*t)
-
-def measurement(m, n):
-    Psi = idct(np.eye(n), norm='ortho')
-    Phi = np.random.randn(m, n)
-    return Phi @ Psi
-
-def omp(y, A, tol=1e-6):
-    m, n = A.shape
-    r = y.copy()
-    idx_set = []
-    x_hat = np.zeros(n)
-    for _ in range(m):
-        correlations = A.T @ r
-        idx = np.argmax(np.abs(correlations))
-        if idx not in idx_set:
-            idx_set.append(idx)
-        A_selected = A[:, idx_set]
-        x_ls, _, _, _ = np.linalg.lstsq(A_selected, y, rcond=None)
-        r = y - A_selected @ x_ls
-    x_hat[idx_set] = x_ls
-    return x_hat
-
-def monte_carlo_trial(sampling_rate, snr_db, n=128, m=80):
-    x_time = generate_sine_signal(n, 5, sampling_rate)
-    x_sparse = dct(x_time, norm='ortho')
-    A = measurement(m, n)
-    y = A @ x_sparse
-    y_noisy = add_noise(y, snr_db)
-    x_sparse_rec = omp(y_noisy, A)
-    x_time_rec = idct(x_sparse_rec, norm='ortho')
-    error = norm(x_time - x_time_rec, ord=2)
-    return error
-
-def add_noise(y, snr_db):
-    signal_power = np.mean(np.abs(y)**2)
-    snr_linear = 10**(snr_db / 10)
-    noise_power = signal_power / snr_linear
-    noise = np.sqrt(noise_power) * np.random.randn(*y.shape)
-    return y + noise
-    
-# ---- Monte Carlo Simulation and Plotting ----
-num_trials = 50
-n_values = [64, 128, 256]
-m_values = np.arange(2, 65, 2)  # Number of measurements
-noise_val = np.arange(0, 51, 5)  # Noise levels in dB
-sampling_rate = 100
-
-plt.figure(figsize=(10, 6))
-avg_errors = []
-for noise in noise_val:
-    errors = []
-    for _ in range(num_trials):
-        errors.append(monte_carlo_trial(sampling_rate, noise))
-    avg_errors.append(np.mean(errors))  
-
-plt.plot(noise_val, avg_errors, marker='o')
-plt.title("Monte Carlo: Avg. Reconstruction Error vs. Noise added (dB)")
-plt.xlabel("Noise Added (dB)")
-plt.xticks(noise_val)
-plt.ylabel("Average Reconstruction Error (L2 norm)")
-plt.grid(True)
+plt.tight_layout()
 plt.show()
 ```
