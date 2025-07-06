@@ -384,7 +384,7 @@ Coordinate Descent is a simple yet powerful optimization algorithm that is widel
 3. Apply the soft-thresholding operator to the updated coordinate to enforce sparsity.
 4. Repeat steps 2 and 3 for all coordinates, cycling through them until convergence.
 
-![CoD Algorithm](D:\Dokumen\Abhi\Internship\ISTA-Python\img\ista-alg.png){fig-align="center" width=80%} <!-- cod algorithm picture -->
+![CoD Algorithm](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/CoD-MATLAB/img/algorithm_cod.png){fig-align="center" width=80%} <!-- cod algorithm picture -->
 
 ### 3.3.1 Algorithm Implementation
 
