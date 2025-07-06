@@ -577,7 +577,7 @@ The Iterations vs MSE plot of CoD and Untrained LCoD shows that both algorithms 
 
 The iterations vs MSE plot of CoD vs Trained lCoD is given below. The trained LISTA algorithm converges to a better reconstruction error than the untrained LISTA algorithm, using lesser numbers of iterations.
 
-![COD vs trained LCoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/CoDvsTrainedCoDpng){fig-align="center" width=100%}
+![COD vs trained LCoD](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD/img/CoDvsTrainedCoD.png){fig-align="center" width=100%}
 
 A similar conclusion is made to the previous section. 
 
