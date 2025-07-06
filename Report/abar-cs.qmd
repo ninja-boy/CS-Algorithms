@@ -525,11 +525,23 @@ Learned ISTA (LISTA) is a neural network-based approach that unrolls the traditi
 
 ### 6.3.1 Algorithm Implementation
 
-The algorithm implemented here has been improvised from the Python implementation of LISTA from [@shlezinger_modelbaseddeeplearning]. All the required packages were imported and the seed was fixed for reproducibility. A simulated dataset was generated with a random dictionary and sparse signal. This was plotted. First the ISTA algorithm was applied to the test set. The untrained LISTA algorithm was then applied to the dataset, and the results were compared with the standard ISTA algorithm. Now, the learned LISTA algorithm was applied to the dataset, and the results were compared with the standard ISTA algorithm.
+The algorithm implemented here has been improvised from the Python implementation of LISTA from [@shlezinger_modelbaseddeeplearning]. All the required packages were imported and the seed was fixed for reproducibility. A simulated dataset was generated with a random dictionary and sparse signal. This was plotted. 
 
-### 6.3.2 Observations
+![Plot of Simulated Data](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\sample_seed.png){fig-align="center" width=100%}
 
-add here................
+First the ISTA algorithm was applied to the test set. The untrained LISTA algorithm was then applied to the dataset, and the results were compared with the standard ISTA algorithm. Now, the learned LISTA algorithm was applied to the dataset, and the results were compared with the standard ISTA algorithm.
+
+### 6.3.2 Observations and Conclusion
+
+The Iterations vs MSE plot of ISTA and Untrained LISTA shows clear convergence. The untrained LISTA and classic ISTA algorithms should be mathematically equivalent,but the starting point of both algorithms are different, indicating issues with equivalence. But both algorithms converge to the same reconstruction error.
+
+![ISTA vs Untrained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\ista_vs_trained_lista.png){fig-align="center" width=100%}
+
+The iterations vs MSE plot of ISTA vs Trained LISTA is given below. The trained LISTA algorithm converges to a better reconstruction error than the untrained LISTA algorithm, using very low numbers of iterations. The starting point of both algorithms is different, indicating the same issues with equivalence as that of the above plot. 
+
+![ISTA vs trained LISTA](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/LISTAandLCOD\ista_vs_untrained_lista.png){fig-align="center" width=100%}
+
+The conclusion is that Learned ISTA (LISTA) method is more than capable of replacing ISTA, combining the interpretability of classic ISTA with the adaptability and efficiency of neural networks. The results show that algorithm unrolling can significantly improve the performance of iterative algorithms for a fraction of the number of iterations.
 
 ## 6.4 Learned CoD (LCoD)
 
@@ -537,7 +549,7 @@ The Learned Coordinate Descent (LCoD) algorithm is an optimization technique tha
 
 ### 6.4.1 Algorithm Implementation
 
-The Iterations vs MSE plot of ISTA vs Untrained LISTA shows clear convergence. The untrained LISTA and classic ISTA algorithms should be mathematically equivalent,but the starting point of both algorithms are different, indicating issues with equivalence. But both algorithms converge to the same reconstruction error.
+
 
 
 

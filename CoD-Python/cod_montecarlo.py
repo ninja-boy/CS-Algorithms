@@ -29,7 +29,6 @@ def cod(y, theta, Psi, alpha=0.05, num_iter=50):
 
 def monte_carlo_trial_cod(n, m, sampling_rate, alpha=0.05, num_iter=50):
     x_time = generate_sine_signal(n, 5, sampling_rate)
-    x_sparse = dct(x_time, norm='ortho').reshape(-1, 1)
     Phi, Psi, theta = measurement_cod(m, n)
     y = Phi @ x_time.reshape(-1, 1)
     x_time_rec = cod(y, theta, Psi, alpha=alpha, num_iter=num_iter)
