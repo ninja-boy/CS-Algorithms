@@ -615,7 +615,7 @@ This report lays a solid foundation for advanced research and practical applicat
 
 4. Optimise torch operations for LCoD
 
-5. Trying to implement the real time processing into a hardware
+5. Trying to implement the real time processing into a hardware (FPGAs/Embedded GPUs) by reducing model size and complexity for low latency power.
 
 \newpage
 
