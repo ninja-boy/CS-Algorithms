@@ -594,7 +594,7 @@ The plot above compares the MSE vs Iterations graph of Learned ISTA (LISTA) and 
 
 1. The iterations of LISTA is more inefficient compared to LCoD.
 
-This is because CoD is an iterative algorithm that selects and updates one coordinate at a time greedily, hence it is guaranteed that it would converge to a lesser MSE per iteration. ISTA does not have such guarantees, hence LISTA may have higher MSE than LCoD at the same number of iterations.
+This is because CoD is an iterative algorithm that selects and updates one coordinate at a time greedily, hence it is guaranteed that there is a change in MSE per iteration. ISTA does not have such guarantees, hence LISTA may have higher MSE than LCoD at the same number of iterations.
 
 2. LCoD have higher computation time per iteration compared to LISTA.
 
