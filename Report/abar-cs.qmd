@@ -367,11 +367,11 @@ The Monte Carlo for ISTA has been implemented with varying measurements for ever
 
 With these 3 parameters used for the trial, it can be done to compare both ISTA and OMP. This is done so as to assess and understand the scope of the algorithm for future work, etc. The comparisons are shown below
 
-![OMP v/s ISTA (m)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/){fig-align="center" width=80%}
+![OMP v/s ISTA (m)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMPvsISTA/img/montecarlo-omp-ista-measurements.png){fig-align="center" width=80%}
 
-![OMP v/s ISTA (noise)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/){fig-align="center" width=80%}
+![OMP v/s ISTA (noise)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/mainOMPvsISTA/img/montecarlo-omp-ista-noise.png){fig-align="center" width=80%}
 
-![OMP v/s ISTA (sparsity)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/){fig-align="center" width=80%}
+![OMP v/s ISTA (sparsity)](https://raw.githubusercontent.com/ninja-boy/CS-Algorithms/main/OMPvsISTA/img/montecarlo-omp-ista-sparsity.png){fig-align="center" width=80%}
 
 In summary, both OMP and ISTA have their own strengths and are suitable for different scenarios in compressed sensing-based radar signal processing:
 
@@ -1147,4 +1147,4 @@ def train(model, train_loader, valid_loader, num_epochs=50):
             )
 
     return loss_test
-    ```
+```
