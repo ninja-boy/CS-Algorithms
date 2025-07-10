@@ -80,7 +80,6 @@ m = 64  # Number of measurements
 noise_val = np.arange(0, 51, 5)  # Noise levels in dB
 sampling_rate = 100
 
-plt.figure(figsize=(10, 6))
 avg_errors_ista = []
 avg_errors_omp = []
 for noise in noise_val:
@@ -92,7 +91,19 @@ for noise in noise_val:
         errors_omp.append(error_omp)
     avg_errors_ista.append(np.mean(errors_ista))
     avg_errors_omp.append(np.mean(errors_omp))
+#original signal
+plt.figure(figsize=(10, 6))
+plt.plot(noise_val, avg_errors_omp, label='OMP', marker='x')
 
+plt.title("Monte Carlo: Avg. Reconstruction Error vs. Noise added (dB)")
+plt.xlabel("Noise Added (dB)")
+plt.legend()
+plt.xticks(noise_val)
+plt.ylabel("Average Reconstruction Error (L2 norm)")
+plt.grid(True)
+plt.show()
+#plot original signal and ISTA
+plt.figure(figsize=(10, 6))
 plt.plot(noise_val, avg_errors_ista, label='ISTA', marker='o')
 plt.plot(noise_val, avg_errors_omp, label='OMP', marker='x')
 

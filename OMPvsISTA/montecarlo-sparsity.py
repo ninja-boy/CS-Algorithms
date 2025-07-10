@@ -69,8 +69,6 @@ num_trials = 50
 k_values = np.arange(1, 31, 2)  # Sparsity levels
 sampling_rate = 100
 
-
-plt.figure(figsize=(10, 6))
 avg_errors_ista = []
 avg_errors_omp = []
 for k in k_values:
@@ -82,7 +80,18 @@ for k in k_values:
         errors_omp.append(error_omp)
     avg_errors_ista.append(np.mean(errors_ista))
     avg_errors_omp.append(np.mean(errors_omp))
-
+#plot just original signal
+plt.figure(figsize=(10, 6))
+plt.plot(k_values, avg_errors_omp, label='OMP', marker='x')
+plt.title("Monte Carlo: Avg. Reconstruction Error vs. Sparsity Level (k)")
+plt.xlabel("Sparsity Level (k)")
+plt.xticks(k_values)
+plt.ylabel("Average Reconstruction Error (L2 norm)")
+plt.legend()
+plt.grid(True)
+plt.show()
+#plot original signal and ISTA
+plt.figure(figsize=(10, 6))
 plt.plot(k_values, avg_errors_ista, label='ISTA', marker='o')
 plt.plot(k_values, avg_errors_omp, label='OMP', marker='x')
 plt.title("Monte Carlo: Avg. Reconstruction Error vs. Sparsity Level (k)")

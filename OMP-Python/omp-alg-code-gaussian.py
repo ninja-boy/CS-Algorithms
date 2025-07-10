@@ -65,6 +65,20 @@ print("True signal:-\n", sparse_signal)
 print("Reconstructed:-\n", reconstructed_signal)
 print("Are they close?    ", np.allclose(sparse_signal, reconstructed_signal, atol=1e-2))
 
+# Plotting only original
+plt.figure(figsize=(16, 9))
+plt.stem(sparse_signal, linefmt='b-', markerfmt='bo', basefmt=' ', label='Original Signal')
+plt.title('Original vs Reconstructed Sparse Signal')
+plt.xlabel('Index')
+plt.ylabel('Amplitude')
+plt.legend()
+
+# Add x-axis (y=0) and y-axis (x=0)
+plt.axhline(0, color='black', linewidth=0.8)  # x-axis
+plt.axvline(0, color='black', linewidth=0.8)  # y-axis
+
+plt.show()
+
 # Plotting
 plt.figure(figsize=(16, 9))
 plt.stem(sparse_signal, linefmt='b-', markerfmt='bo', basefmt=' ', label='Original Signal')
