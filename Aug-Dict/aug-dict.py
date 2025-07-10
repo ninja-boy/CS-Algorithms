@@ -93,7 +93,17 @@ signal_hat = D_total @ z
 error = np.linalg.norm(signal - signal_hat)
 print(f"Reconstruction error (L2 norm): {error:.4f}")
 
-# 9. Plot original and reconstructed
+# Plot original
+plt.figure(figsize=(10, 4))
+plt.plot(t, signal, label="Original Mixed Signal")
+plt.title("Mixed Signal Reconstruction from Compressed Measurements")
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+# Plot original and reconstructed signals
 plt.figure(figsize=(10, 4))
 plt.plot(t, signal, label="Original Mixed Signal")
 plt.plot(t, signal_hat, '--', label="Reconstructed Signal (OMP)")

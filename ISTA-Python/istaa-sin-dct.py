@@ -63,6 +63,18 @@ print(f"Reconstruction error (L2 norm): {error:.4f}")
 # Print number of iterations
 #print(f"Number of iterations in ISTA: {num_iter}")
 
+#plot only original
+plt.figure(figsize=(12, 6))
+plt.plot(x_time, label="Original Sine Signal", linewidth=2)
+plt.title("Sine Signal: Signal Reconstruction using DCT and ISTA")
+plt.xlabel("Sample Index")
+plt.ylabel("Amplitude")
+plt.legend()
+
+plt.axhline(0, color='black', linewidth=0.8)  # x-axis
+plt.axvline(0, color='black', linewidth=0.8)  # y-axis
+plt.show()
+
 # Plot original and reconstructed signals
 plt.figure(figsize=(12, 6))
 plt.plot(x_time, label="Original Sine Signal", linewidth=2)
