@@ -77,7 +77,19 @@ x_time_rec = idct(x_sparse_rec, norm='ortho')
 print("\nReconstruction error (L2 norm):", norm(x_time - x_time_rec))
 print("Iterations taken to converge:", num_iter)   
 
-# Plotting
+# Plotting original signals
+plt.figure(figsize=(14, 6))
+plt.plot(x_time, label="Original Sine Signal", linewidth=2)
+plt.title("Sine Signal: Signal Reconstruction using DCT and OMP")
+plt.xlabel("Sample Index")
+plt.ylabel("Amplitude")
+plt.legend()
+
+plt.axhline(0, color='black', linewidth=0.8)  # x-axis
+plt.axvline(0, color='black', linewidth=0.8)  # y-axis
+plt.show()
+
+# Plotting ORIGINAL and RECONSTRUCTED SIGNALS
 plt.figure(figsize=(14, 6))
 plt.plot(x_time, label="Original Sine Signal", linewidth=2)
 plt.plot(x_time_rec, '--r', label="Reconstructed Signal", linewidth=2)
@@ -89,4 +101,3 @@ plt.legend()
 plt.axhline(0, color='black', linewidth=0.8)  # x-axis
 plt.axvline(0, color='black', linewidth=0.8)  # y-axis
 plt.show()
-
