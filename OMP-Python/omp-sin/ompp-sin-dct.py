@@ -68,8 +68,8 @@ snr_db = int(input("Enter noise to be added (dB): "))  # Signal-to-noise ratio i
 y_noisy = add_noise(y, snr_db)
 
 # Reconstruct sparse vector using OMP
-x_sparse_rec, num_iter = omp(y, A)
-
+#x_sparse_rec, num_iter = omp(y, A)
+x_sparse_rec, num_iter = omp(y_noisy, A)
 # Inverse DCT to get back time-domain signal
 x_time_rec = idct(x_sparse_rec, norm='ortho')
 
